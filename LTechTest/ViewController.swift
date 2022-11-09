@@ -9,11 +9,15 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    let loginViewController = LoginViewController()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        guard let storyboard = storyboard else { return }
+        
+        let loginViewController = storyboard.instantiateViewController(identifier: "loginSegue")
+        present(loginViewController, animated: false)
     }
-
-
 }
 
