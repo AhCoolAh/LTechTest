@@ -67,6 +67,7 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         doSomething()
 //        doSomethingElse()
     }
@@ -111,7 +112,32 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
 //@IBOutlet weak var emailTextField: UITextField!
 //@IBOutlet weak var passwordTextField: UITextField!
 //@IBOutlet weak var messageLabel: UILabel!
-
+    @IBOutlet weak var loginFormStackView: UIStackView!
+    @IBOutlet weak var stackViewTopLabel: UILabel!
+    @IBOutlet weak var stackViewPhoneLabel: UILabel!
+    @IBOutlet weak var stackViewPhoneContainer: UIView!
+    @IBOutlet weak var stackViewPasswordLabel: UILabel!
+    @IBOutlet weak var stackViewPasswordContainer: UIView!
+    @IBOutlet weak var stackViewErrorLabel: UILabel!
+    
+    
+    func setupView() {
+        loginFormStackView.setCustomSpacing(24.0, after: stackViewTopLabel)
+        loginFormStackView.setCustomSpacing(8.0, after: stackViewPhoneLabel)
+        loginFormStackView.setCustomSpacing(24.0, after: stackViewPhoneContainer)
+        loginFormStackView.setCustomSpacing(8.0, after: stackViewPasswordLabel)
+        loginFormStackView.setCustomSpacing(4.0, after: stackViewPasswordContainer)
+        
+        stackViewPhoneContainer.layer.cornerRadius = 14
+        stackViewPhoneContainer.layer.borderWidth = 1.5
+        stackViewPhoneContainer.layer.borderColor = UIColor(named: "extralightGrayColor")?.cgColor
+        
+        stackViewPasswordContainer.layer.cornerRadius = 14
+        stackViewPasswordContainer.layer.borderWidth = 1.5
+        stackViewPasswordContainer.layer.borderColor = UIColor(named: "extralightGrayColor")?.cgColor
+        
+        stackViewErrorLabel.isHidden = true
+    }
 //@IBAction func loginButtonTapped(_ sender: Any)
 //{
 //  login()

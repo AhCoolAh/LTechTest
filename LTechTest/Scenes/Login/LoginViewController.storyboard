@@ -3,10 +3,22 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Semibold.otf">
+            <string>SFProDisplay-Semibold</string>
+        </array>
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Login View Controller-->
         <scene sceneID="s0d-6b-0kx">
@@ -17,24 +29,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QUz-Ca-rWI" userLabel="LoginFormStackView">
-                                <rect key="frame" x="16" y="119" width="382" height="143.5"/>
+                                <rect key="frame" x="16" y="119" width="382" height="169"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W69-OG-BW7">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вход в аккаунт" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mh-Xq-vUQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="24"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Телефон" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W69-OG-BW7">
+                                        <rect key="frame" x="0.0" y="24" width="382" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSp-k2-Bi4" userLabel="PhoneContainer">
-                                        <rect key="frame" x="0.0" y="20.5" width="382" height="44"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="382" height="44"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fZZ-zc-fhL">
                                                 <rect key="frame" x="10" y="10" width="360" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="1wo-Xu-GXd"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -45,21 +63,21 @@
                                             <constraint firstAttribute="bottom" secondItem="fZZ-zc-fhL" secondAttribute="bottom" constant="10" id="zfT-nq-caC"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztg-me-HdQ">
-                                        <rect key="frame" x="0.0" y="64.5" width="382" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пароль" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztg-me-HdQ">
+                                        <rect key="frame" x="0.0" y="88.5" width="382" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L19-Kh-9NE" userLabel="PasswordContainer">
-                                        <rect key="frame" x="0.0" y="85" width="382" height="44"/>
+                                        <rect key="frame" x="0.0" y="109" width="382" height="44"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zB9-g1-D8U">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Введите пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zB9-g1-D8U">
                                                 <rect key="frame" x="10" y="10" width="360" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="lrI-Bd-WVV"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" textContentType="password"/>
                                             </textField>
                                         </subviews>
@@ -71,14 +89,15 @@
                                             <constraint firstItem="zB9-g1-D8U" firstAttribute="leading" secondItem="L19-Kh-9NE" secondAttribute="leading" constant="10" id="hmi-MO-OQc"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wuh-YF-Z1g">
-                                        <rect key="frame" x="0.0" y="129" width="382" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ggrtg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wuh-YF-Z1g">
+                                        <rect key="frame" x="0.0" y="153" width="382" height="16"/>
+                                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="13"/>
+                                        <color key="textColor" name="redColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="2Mh-Xq-vUQ" firstAttribute="centerX" secondItem="QUz-Ca-rWI" secondAttribute="centerX" id="17E-Co-Kvg"/>
                                     <constraint firstItem="ztg-me-HdQ" firstAttribute="leading" secondItem="QUz-Ca-rWI" secondAttribute="leading" id="3O6-oB-xks"/>
                                     <constraint firstAttribute="trailing" secondItem="XSp-k2-Bi4" secondAttribute="trailing" id="Cwv-Eq-jxL"/>
                                     <constraint firstAttribute="bottom" secondItem="Wuh-YF-Z1g" secondAttribute="bottom" id="Ev2-ty-TRU"/>
@@ -114,6 +133,15 @@
                             <constraint firstItem="QUz-Ca-rWI" firstAttribute="top" secondItem="VLL-dI-Rp8" secondAttribute="bottom" constant="32" id="tws-bv-Ebc"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginFormStackView" destination="QUz-Ca-rWI" id="GVu-CK-Kli"/>
+                        <outlet property="stackViewErrorLabel" destination="Wuh-YF-Z1g" id="F4t-vq-t2E"/>
+                        <outlet property="stackViewPasswordContainer" destination="L19-Kh-9NE" id="LVU-px-k1s"/>
+                        <outlet property="stackViewPasswordLabel" destination="ztg-me-HdQ" id="gkr-Yx-Qpa"/>
+                        <outlet property="stackViewPhoneContainer" destination="XSp-k2-Bi4" id="bbe-rS-koG"/>
+                        <outlet property="stackViewPhoneLabel" destination="W69-OG-BW7" id="uHv-h0-Gcu"/>
+                        <outlet property="stackViewTopLabel" destination="2Mh-Xq-vUQ" id="No5-Zx-MYC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -122,6 +150,9 @@
     </scenes>
     <resources>
         <image name="Image" width="112" height="24"/>
+        <namedColor name="redColor">
+            <color red="0.9570000171661377" green="0.3449999988079071" blue="0.42399999499320984" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

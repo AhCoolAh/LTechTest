@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1763A88C291C007A0005F7FC /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1763A88B291C007A0005F7FC /* SF-Pro.ttf */; };
+		1763A88E291C02F60005F7FC /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1763A88D291C02F60005F7FC /* SF-Pro-Text-Semibold.otf */; };
+		1763A890291C03130005F7FC /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1763A88F291C03130005F7FC /* SF-Pro-Display-Semibold.otf */; };
+		1763A892291C03290005F7FC /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1763A891291C03290005F7FC /* SF-Pro-Text-Regular.otf */; };
 		17BDF9A3291A9660005502BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF9A2291A9660005502BA /* AppDelegate.swift */; };
 		17BDF9A5291A9660005502BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF9A4291A9660005502BA /* SceneDelegate.swift */; };
 		17BDF9A7291A9660005502BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF9A6291A9660005502BA /* ViewController.swift */; };
@@ -43,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1763A88B291C007A0005F7FC /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
+		1763A88D291C02F60005F7FC /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
+		1763A88F291C03130005F7FC /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
+		1763A891291C03290005F7FC /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		17BDF99F291A9660005502BA /* LTechTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTechTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BDF9A2291A9660005502BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17BDF9A4291A9660005502BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +98,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1763A887291BFE7B0005F7FC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1763A88B291C007A0005F7FC /* SF-Pro.ttf */,
+				1763A88D291C02F60005F7FC /* SF-Pro-Text-Semibold.otf */,
+				1763A88F291C03130005F7FC /* SF-Pro-Display-Semibold.otf */,
+				1763A891291C03290005F7FC /* SF-Pro-Text-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1763A888291BFE860005F7FC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				17BDF9AB291A9663005502BA /* Assets.xcassets */,
+				1763A887291BFE7B0005F7FC /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		17BDF996291A9660005502BA = {
 			isa = PBXGroup;
 			children = (
@@ -113,12 +141,12 @@
 		17BDF9A1291A9660005502BA /* LTechTest */ = {
 			isa = PBXGroup;
 			children = (
+				1763A888291BFE860005F7FC /* Resources */,
 				17BDF9ED291A9EF0005502BA /* Scenes */,
 				17BDF9A2291A9660005502BA /* AppDelegate.swift */,
 				17BDF9A4291A9660005502BA /* SceneDelegate.swift */,
 				17BDF9A6291A9660005502BA /* ViewController.swift */,
 				17BDF9A8291A9660005502BA /* Main.storyboard */,
-				17BDF9AB291A9663005502BA /* Assets.xcassets */,
 				17BDF9AD291A9663005502BA /* LaunchScreen.storyboard */,
 				17BDF9B0291A9663005502BA /* Info.plist */,
 			);
@@ -268,10 +296,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1763A88E291C02F60005F7FC /* SF-Pro-Text-Semibold.otf in Resources */,
 				17BDF9AF291A9663005502BA /* LaunchScreen.storyboard in Resources */,
 				17BDF9EC291A9DBE005502BA /* LoginViewController.storyboard in Resources */,
+				1763A890291C03130005F7FC /* SF-Pro-Display-Semibold.otf in Resources */,
 				17BDF9AC291A9663005502BA /* Assets.xcassets in Resources */,
 				17BDF9AA291A9660005502BA /* Main.storyboard in Resources */,
+				1763A892291C03290005F7FC /* SF-Pro-Text-Regular.otf in Resources */,
+				1763A88C291C007A0005F7FC /* SF-Pro.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
