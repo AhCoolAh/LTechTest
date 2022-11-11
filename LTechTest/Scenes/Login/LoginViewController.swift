@@ -70,6 +70,10 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         setupView()
         doSomething()
         passwordTextField.delegate = self
+        phoneTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name:UIResponder.keyboardWillHideNotification, object: nil)
 //        doSomethingElse()
     }
     
@@ -132,6 +136,9 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     
     var hashPassword = String()
     
+    var bottomButtonConstraint = NSLayoutConstraint()
+    @IBOutlet weak var nextButton: UIButton!
+    
     func setupView() {
         loginFormStackView.setCustomSpacing(24.0, after: stackViewTopLabel)
         loginFormStackView.setCustomSpacing(8.0, after: stackViewPhoneLabel)
@@ -148,6 +155,19 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         stackViewPasswordContainer.layer.borderColor = UIColor(named: "extralightGrayColor")?.cgColor
         
         stackViewErrorLabel.isHidden = true
+        
+        bottomButtonConstraint = nextButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+        bottomButtonConstraint.isActive = true
+        
+        nextButton.layer.cornerRadius = 13
+        nextButton.backgroundColor = UIColor(named: "blueDisabledColor")
+
+//        nextButton.setTitleColor(UIColor(named: "whiteColor"), fo)
+//        nextButton.setTitleShadowColor(UIColor(named: "whiteColor"), for: .disabled)
+//        nextButton.text = "chupa"
+//        nextButton.setBackgroundColor(color: AppSettings.UI.grayLightNewColor, forState: .disabled)
+        nextButton.isEnabled = true
+
     }
     
     @IBAction func eyeButtonTapped(_ sender: Any) {
@@ -169,7 +189,19 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         } else {
             passwordTextField.text = hashPassword
         }
+//        nextButton.backgroundColor = UIColor(named: "blueColor")
     }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            self.bottomButtonConstraint.constant = -16 - keyboardSize.height
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        self.bottomButtonConstraint.constant = -16
+    }
+    
 }
 
 extension LoginViewController: UITextFieldDelegate {
@@ -202,6 +234,22 @@ extension LoginViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
             return true
         }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == phoneTextField {
+            stackViewPhoneContainer.layer.borderColor = UIColor(named: "grayColor")?.cgColor
+        } else {
+            stackViewPasswordContainer.layer.borderColor = UIColor(named: "grayColor")?.cgColor
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == phoneTextField {
+            stackViewPhoneContainer.layer.borderColor = UIColor(named: "extralightGrayColor")?.cgColor
+        } else {
+            stackViewPasswordContainer.layer.borderColor = UIColor(named: "extralightGrayColor")?.cgColor
+        }
+    }
     
 //@IBAction func loginButtonTapped(_ sender: Any)
 //{

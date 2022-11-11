@@ -29,7 +29,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QUz-Ca-rWI" userLabel="LoginFormStackView">
-                                <rect key="frame" x="16" y="119" width="382" height="169"/>
+                                <rect key="frame" x="16" y="131" width="382" height="169"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вход в аккаунт" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Mh-Xq-vUQ">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="24"/>
@@ -53,6 +53,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="51R-rQ-XDN"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -125,8 +128,21 @@
                                     <constraint firstItem="Wuh-YF-Z1g" firstAttribute="leading" secondItem="QUz-Ca-rWI" secondAttribute="leading" id="seI-tV-2wq"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fM-Xa-U9p">
+                                <rect key="frame" x="16" y="824" width="382" height="54"/>
+                                <color key="backgroundColor" name="blueDisabledColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="Zvc-ve-hCV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Войти">
+                                    <color key="titleColor" name="whiteColor"/>
+                                </state>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLL-dI-Rp8" userLabel="Logo Container">
-                                <rect key="frame" x="0.0" y="44" width="414" height="43"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="43"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoLTech" translatesAutoresizingMaskIntoConstraints="NO" id="rih-Ou-4NM" userLabel="Logo">
                                         <rect key="frame" x="151" y="19" width="112" height="24"/>
@@ -141,19 +157,23 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                        <color key="backgroundColor" name="whiteColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="VLL-dI-Rp8" secondAttribute="trailing" id="18M-BB-XW5"/>
                             <constraint firstItem="QUz-Ca-rWI" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Eh0-AK-QMb"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="QUz-Ca-rWI" secondAttribute="trailing" constant="16" id="Ihx-XU-UL7"/>
                             <constraint firstItem="VLL-dI-Rp8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="LIV-iz-H6e"/>
-                            <constraint firstItem="VLL-dI-Rp8" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="tqx-DD-4li"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7fM-Xa-U9p" secondAttribute="trailing" constant="16" id="Seu-cQ-X4H"/>
+                            <constraint firstItem="7fM-Xa-U9p" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="16" id="kor-mr-wMf"/>
+                            <constraint firstItem="VLL-dI-Rp8" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="12" id="tqx-DD-4li"/>
                             <constraint firstItem="QUz-Ca-rWI" firstAttribute="top" secondItem="VLL-dI-Rp8" secondAttribute="bottom" constant="32" id="tws-bv-Ebc"/>
+                            <constraint firstItem="7fM-Xa-U9p" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="uFj-nA-HJk"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="eyeButton" destination="AaU-e6-SZl" id="R0c-O7-wye"/>
                         <outlet property="loginFormStackView" destination="QUz-Ca-rWI" id="GVu-CK-Kli"/>
+                        <outlet property="nextButton" destination="7fM-Xa-U9p" id="T5K-g9-NRi"/>
                         <outlet property="passwordTextField" destination="zB9-g1-D8U" id="jxp-mD-GYa"/>
                         <outlet property="phoneTextField" destination="fZZ-zc-fhL" id="PRw-Rd-2ZL"/>
                         <outlet property="stackViewErrorLabel" destination="Wuh-YF-Z1g" id="F4t-vq-t2E"/>
@@ -172,14 +192,17 @@
     <resources>
         <image name="eyeIconLogin" width="22" height="16"/>
         <image name="logoLTech" width="112" height="24"/>
+        <namedColor name="blueDisabledColor">
+            <color red="0.72500002384185791" green="0.83099997043609619" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="redColor">
             <color red="0.9570000171661377" green="0.3449999988079071" blue="0.42399999499320984" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="whiteColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
