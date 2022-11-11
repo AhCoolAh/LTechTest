@@ -69,6 +69,7 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         super.viewDidLoad()
         setupView()
         doSomething()
+        passwordTextField.delegate = self
 //        doSomethingElse()
     }
     
@@ -119,7 +120,17 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     @IBOutlet weak var stackViewPasswordLabel: UILabel!
     @IBOutlet weak var stackViewPasswordContainer: UIView!
     @IBOutlet weak var stackViewErrorLabel: UILabel!
+    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var eyeButton: UIButton!
     
+    var password: String = ""
+    var copy: String = ""
+    var isEyeClosed = false
+    
+    var passwordText = String()
+    
+    var hashPassword = String()
     
     func setupView() {
         loginFormStackView.setCustomSpacing(24.0, after: stackViewTopLabel)
@@ -138,6 +149,60 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         
         stackViewErrorLabel.isHidden = true
     }
+    
+    @IBAction func eyeButtonTapped(_ sender: Any) {
+        
+        if(!isEyeClosed) {
+            isEyeClosed = true
+            eyeButton.setImage(UIImage(named: "eyeCrossedIconLogin")!, for: .normal)
+            togglePassword()
+        } else {
+            isEyeClosed = false
+            eyeButton.setImage(UIImage(named: "eyeIconLogin")!, for: .normal)
+            togglePassword()
+        }
+    }
+    
+    func togglePassword() {
+        if(!isEyeClosed){
+            passwordTextField.text = passwordText
+        } else {
+            passwordTextField.text = hashPassword
+        }
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+    if textField == passwordTextField {
+
+        hashPassword = ""
+        let newChar = string.first
+        let offsetToUpdate = passwordText.index(passwordText.startIndex, offsetBy: range.location)
+
+        if string == "" {
+            passwordText.remove(at: offsetToUpdate)
+            return true
+        }
+        else { passwordText.insert(newChar!, at: offsetToUpdate) }
+
+        for _ in passwordText {  hashPassword += "*" }
+        
+        togglePassword()
+        return false
+    }
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+        {
+
+            textField.resignFirstResponder()
+            return true
+        }
+    
 //@IBAction func loginButtonTapped(_ sender: Any)
 //{
 //  login()
