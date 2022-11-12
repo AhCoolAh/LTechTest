@@ -11,9 +11,13 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 protocol LoginBusinessLogic {
     func doSomething(request: Login.Something.Request)
+    func getMask()
+    func login(request: Login.Login.Request)
 //    func doSomethingElse(request: Login.SomethingElse.Request)
 }
 
@@ -24,6 +28,9 @@ protocol LoginDataStore {
 class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     var presenter: LoginPresentationLogic?
     var worker: LoginWorker?
+    
+    var jsonArray:NSMutableArray?
+    var newArray: Array<String> = []
     //var name: String = ""
 
     // MARK: Do something (and send response to LoginPresenter)
@@ -34,6 +41,29 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
 
         let response = Login.Something.Response()
         presenter?.presentSomething(response: response)
+    }
+    
+    func getMask() {
+        AF.request("http://dev-exam.l-tech.ru/api/v1/phone_masks", method: .get).responseJSON { responseJSON in
+            print(responseJSON.result)
+//            presenter?.presentMask(response: response[])
+        }
+        
+        AF.request("http://dev-exam.l-tech.ru/api/v1/phone_masks", method: .get).responseJSON { response in
+//                        print(response.request)  // original URL request
+//                        print(response.response) // URL response
+//                        print(response.data)     // server data
+//                        print(response.result)   // result of response serialization
+            
+            let value = response.value
+            let json = JSON(value)
+            let maskValue = Login.Mask.Response(mask: json["phoneMask"].stringValue)
+            self.presenter?.presentMask(response: maskValue)
+        }
+    }
+    
+    func login(request: Login.Login.Request) {
+        //
     }
 //
 //    func doSomethingElse(request: Login.SomethingElse.Request) {

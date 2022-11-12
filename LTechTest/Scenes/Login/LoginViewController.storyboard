@@ -54,6 +54,7 @@
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                                 <connections>
+                                                    <action selector="phoneTextFieldEditingChanged:" destination="Y6W-OH-hqX" eventType="editingChanged" id="aFC-6Q-egC"/>
                                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="51R-rQ-XDN"/>
                                                 </connections>
                                             </textField>
@@ -81,7 +82,7 @@
                                                     <constraint firstAttribute="height" constant="24" id="lrI-Bd-WVV"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="password"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="4HK-Xn-LCM"/>
                                                 </connections>
@@ -128,7 +129,7 @@
                                     <constraint firstItem="Wuh-YF-Z1g" firstAttribute="leading" secondItem="QUz-Ca-rWI" secondAttribute="leading" id="seI-tV-2wq"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fM-Xa-U9p">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fM-Xa-U9p">
                                 <rect key="frame" x="16" y="824" width="382" height="54"/>
                                 <color key="backgroundColor" name="blueDisabledColor"/>
                                 <constraints>
@@ -140,6 +141,9 @@
                                 <state key="normal" title="Войти">
                                     <color key="titleColor" name="whiteColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cdt-q1-h86"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VLL-dI-Rp8" userLabel="Logo Container">
                                 <rect key="frame" x="0.0" y="56" width="414" height="43"/>
@@ -164,7 +168,6 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="QUz-Ca-rWI" secondAttribute="trailing" constant="16" id="Ihx-XU-UL7"/>
                             <constraint firstItem="VLL-dI-Rp8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="LIV-iz-H6e"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7fM-Xa-U9p" secondAttribute="trailing" constant="16" id="Seu-cQ-X4H"/>
-                            <constraint firstItem="7fM-Xa-U9p" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="16" id="kor-mr-wMf"/>
                             <constraint firstItem="VLL-dI-Rp8" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="12" id="tqx-DD-4li"/>
                             <constraint firstItem="QUz-Ca-rWI" firstAttribute="top" secondItem="VLL-dI-Rp8" secondAttribute="bottom" constant="32" id="tws-bv-Ebc"/>
                             <constraint firstItem="7fM-Xa-U9p" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="uFj-nA-HJk"/>

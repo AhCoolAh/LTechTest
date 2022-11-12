@@ -11,11 +11,13 @@
 //
 
 import UIKit
+import Veil
 
 protocol LoginDisplayLogic: AnyObject
 {
     func displaySomething(viewModel: Login.Something.ViewModel)
 //    func displaySomethingElse(viewModel: Login.SomethingElse.ViewModel)
+    func displayPhoneMask(viewModel: Login.Mask.ViewModel)
 }
 
 class LoginViewController: UIViewController, LoginDisplayLogic {
@@ -69,31 +71,37 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         super.viewDidLoad()
         setupView()
         doSomething()
+        DispatchQueue.global().async {
+            let lock = DispatchSemaphore(value: 0)
+            self.getMask(completion: {
+                lock.signal()
+            })
+            lock.wait()
+        }
         passwordTextField.delegate = self
         phoneTextField.delegate = self
-        
+        [passwordTextField, phoneTextField].forEach({ $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged) })
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name:UIResponder.keyboardWillHideNotification, object: nil)
 //        doSomethingElse()
     }
-    
-    //MARK: - receive events from UI
-    
-    //@IBOutlet weak var nameTextField: UITextField!
-//
-//    @IBAction func someButtonTapped(_ sender: Any) {
-//
-//    }
-//
-//    @IBAction func otherButtonTapped(_ sender: Any) {
-//
-//    }
-    
+
     // MARK: - request data from LoginInteractor
 
     func doSomething() {
         let request = Login.Something.Request()
         interactor?.doSomething(request: request)
+    }
+    
+    func getMask(completion: (() -> Void)){
+        interactor?.getMask()
+    }
+    
+    func login() {
+        let phone = phoneTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        let request = Login.Login.Request(phone: phone, password: password)
+        interactor?.login(request: request)
     }
 //
 //    func doSomethingElse() {
@@ -110,9 +118,13 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
 //    func displaySomethingElse(viewModel: Login.SomethingElse.ViewModel) {
 //        // do sometingElse with viewModel
 //    }
+    func displayPhoneMask(viewModel: Login.Mask.ViewModel) {
+        dateMask = Veil(pattern: viewModel.mask)
+        phoneTextField.text = viewModel.code
+    }
 
 
-    // MARK: - Login
+    // MARK: - Login elements and events from UI
 
 //@IBOutlet weak var emailTextField: UITextField!
 //@IBOutlet weak var passwordTextField: UITextField!
@@ -139,6 +151,8 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     var bottomButtonConstraint = NSLayoutConstraint()
     @IBOutlet weak var nextButton: UIButton!
     
+    var dateMask = Veil(pattern: "###########")
+    
     func setupView() {
         loginFormStackView.setCustomSpacing(24.0, after: stackViewTopLabel)
         loginFormStackView.setCustomSpacing(8.0, after: stackViewPhoneLabel)
@@ -161,12 +175,7 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         
         nextButton.layer.cornerRadius = 13
         nextButton.backgroundColor = UIColor(named: "blueDisabledColor")
-
-//        nextButton.setTitleColor(UIColor(named: "whiteColor"), fo)
-//        nextButton.setTitleShadowColor(UIColor(named: "whiteColor"), for: .disabled)
-//        nextButton.text = "chupa"
-//        nextButton.setBackgroundColor(color: AppSettings.UI.grayLightNewColor, forState: .disabled)
-        nextButton.isEnabled = true
+        nextButton.isEnabled = false
 
     }
     
@@ -189,8 +198,21 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         } else {
             passwordTextField.text = hashPassword
         }
-//        nextButton.backgroundColor = UIColor(named: "blueColor")
     }
+    
+//    func checkInput(_ number: Int) {
+//        let phoneInput = phoneTextField.text ?? ""
+//        let passwordInput = passwordTextField.text ?? ""
+//        print("________________\(number)")
+//        if(!phoneInput.isEmpty && !passwordInput.isEmpty) {
+//            nextButton.backgroundColor = UIColor(named: "blueColor")
+//            nextButton.isEnabled = true
+//        } else {
+//            nextButton.backgroundColor = UIColor(named: "blueDisabledColor")
+//            nextButton.isEnabled = false
+//
+//        }
+//    }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -202,35 +224,50 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         self.bottomButtonConstraint.constant = -16
     }
     
+    @IBAction func phoneTextFieldEditingChanged(_ sender: UITextField) {
+        guard let currentText = sender.text else  {
+            return
+        }
+
+        sender.text = dateMask.mask(input: currentText, exhaustive: false)
+//        phoneTextFieldEditingChanged
+    }
+    
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        let biba = phoneTextField.text
+        let boba = passwordTextField.text
+        print("---------------\(biba)+\(boba)")
+    }  
 }
 
 extension LoginViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
-    if textField == passwordTextField {
+        if textField == passwordTextField {
 
-        hashPassword = ""
-        let newChar = string.first
-        let offsetToUpdate = passwordText.index(passwordText.startIndex, offsetBy: range.location)
-
-        if string == "" {
-            passwordText.remove(at: offsetToUpdate)
-            return true
-        }
-        else { passwordText.insert(newChar!, at: offsetToUpdate) }
-
-        for _ in passwordText {  hashPassword += "*" }
+            hashPassword = ""
+            let newChar = string.first
+            let offsetToUpdate = passwordText.index(passwordText.startIndex, offsetBy: range.location)
         
-        togglePassword()
-        return false
-    }
+            if string == "" {
+                passwordText.remove(at: offsetToUpdate)
+//                return true
+            } else {
+                passwordText.insert(newChar!, at: offsetToUpdate)
+            }
+
+            for _ in passwordText {  hashPassword += "*" }
+            togglePassword()
+            checkInput()
+
+            return false
+        }
         return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
         {
-
             textField.resignFirstResponder()
             return true
         }
@@ -249,6 +286,25 @@ extension LoginViewController: UITextFieldDelegate {
         } else {
             stackViewPasswordContainer.layer.borderColor = UIColor(named: "extralightGrayColor")?.cgColor
         }
+    }
+    
+    @objc func editingChanged(_ textField: UITextField) {
+        checkInput()
+    }
+    
+    func checkInput() {
+        guard
+            let phone = phoneTextField.text, !phone.isEmpty,
+            let pass = passwordTextField.text, !pass.isEmpty
+        else {
+            print("---notgurad--\(phoneTextField.text)+\(passwordTextField.text)")
+            nextButton.backgroundColor = UIColor(named: "blueDisabledColor")
+            nextButton.isEnabled = false
+            return
+        }
+        print("---gurad--\(phoneTextField.text)+\(passwordTextField.text)")
+        nextButton.backgroundColor = UIColor(named: "blueColor")
+        nextButton.isEnabled = true
     }
     
 //@IBAction func loginButtonTapped(_ sender: Any)

@@ -34,21 +34,37 @@ enum Login
         }
     }
     
-//    enum SomethingElse
-//    {
-//        struct Request
-//        {
-//
-//        }
-//
-//        struct Response
-//        {
-//
-//        }
-//
-//        struct ViewModel
-//        {
-//
-//        }
-//    }
+    enum Mask
+    {
+        struct Response
+        {
+            var mask: String?
+        }
+        
+        struct ViewModel
+        {
+            var mask: String
+            var code: String
+        }
+    }
+    
+    enum Login
+    {
+        struct Request
+        {
+            var phone: String
+            var password: String
+        }
+        
+        struct Response
+        {
+            var success: Bool
+        }
+        
+        struct ViewModel
+        {
+            var mask: String
+            var code: String
+        }
+    }
 }
