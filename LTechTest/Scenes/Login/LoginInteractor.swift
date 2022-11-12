@@ -13,12 +13,13 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import KeychainAccess
 
 protocol LoginBusinessLogic {
     func doSomething(request: Login.Something.Request)
     func getMask()
     func login(request: Login.Login.Request)
-//    func doSomethingElse(request: Login.SomethingElse.Request)
+    func autoFillForm()
 }
 
 protocol LoginDataStore {
@@ -31,7 +32,6 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     
     var jsonArray:NSMutableArray?
     var newArray: Array<String> = []
-    //var name: String = ""
 
     // MARK: Do something (and send response to LoginPresenter)
 
@@ -44,18 +44,9 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     }
     
     func getMask() {
-//        AF.request("http://dev-exam.l-tech.ru/api/v1/phone_masks", method: .get).responseJSON { responseJSON in
-//            print(responseJSON.result)
-////            presenter?.presentMask(response: response[])
-//        }
         
         AF.request("http://dev-exam.l-tech.ru/api/v1/phone_masks", method: .get).responseJSON { response in
-//                        print(response.request)  // original URL request
-//                        print(response.response) // URL response
-//                        print(response.data)     // server data
-//                        print(response.result)   // result of response serialization
-            
-            let value = response.value
+            let value = response.value ?? ""
             let json = JSON(value)
             let maskValue = Login.Mask.Response(mask: json["phoneMask"].stringValue)
             self.presenter?.presentMask(response: maskValue)
@@ -64,6 +55,9 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     
     func login(request: Login.Login.Request) {
         
+        let keychain = Keychain(service: "Test.LTechTest")
+        keychain["phone"] = request.phone
+        keychain["password"] = request.password
         let headers: HTTPHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]
@@ -72,24 +66,18 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
             "password": request.password
         ]
         AF.request("http://dev-exam.l-tech.ru/api/v1/auth", method: .post, parameters: parameters, headers: headers).responseJSON { response in
-//                        print(response.request)  // original URL request
-//                        print(response.response) // URL response
-//                        print(response.data)     // server data
-//                        print(response.result)   // result of response serialization
-            
-            let value = response.value
+            let value = response.value ?? ""
             let json = JSON(value)
             let success = Login.Login.Response(success: json["success"].boolValue)
             self.presenter?.presentLoginResponse(response: success)
-//            self.presenter?.presentMask(response: maskValue)
         }
     }
-//
-//    func doSomethingElse(request: Login.SomethingElse.Request) {
-//        worker = LoginWorker()
-//        worker?.doSomeOtherWork()
-//
-//        let response = Login.SomethingElse.Response()
-//        presenter?.presentSomethingElse(response: response)
-//    }
+    
+    func autoFillForm() {
+        let keychain = Keychain(service: "Test.LTechTest")
+        let savedPhone = keychain["phone"] ?? ""
+        let savedPass = keychain["password"] ?? ""
+        let savedData = Login.Form.SavedData(phone: savedPhone, password: savedPass)
+        self.presenter?.presentAutoFillForm(savedData: savedData)
+    }
 }

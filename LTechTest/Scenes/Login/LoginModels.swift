@@ -66,4 +66,19 @@ enum Login
             var success: Bool
         }
     }
+    
+    enum Form
+    {
+        struct SavedData
+        {
+            var phone: String
+            var password: String
+        }
+        
+        struct ViewModel
+        {
+            var phone: String
+            var password: String
+        }
+    }
 }

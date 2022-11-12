@@ -16,6 +16,7 @@ protocol LoginPresentationLogic {
     func presentSomething(response: Login.Something.Response)
     func presentMask(response: Login.Mask.Response)
     func presentLoginResponse(response: Login.Login.Response)
+    func presentAutoFillForm(savedData: Login.Form.SavedData)
 }
 
 class LoginPresenter: LoginPresentationLogic {
@@ -42,19 +43,14 @@ class LoginPresenter: LoginPresentationLogic {
         let viewModel = Login.Login.ViewModel(success: response.success)
         viewController?.displayLoginTry(viewModel: viewModel)
     }
+    
+    func presentAutoFillForm(savedData: Login.Form.SavedData) {
+        let phone = savedData.phone
+        let password = savedData.password
+        if (!phone.isEmpty && !password.isEmpty) {
+            let viewModel = Login.Form.ViewModel(phone: phone, password: password)
+            viewController?.displayAutoFillForm(viewModel: viewModel)
+        }
+    }
 
-    
-    
-//    func presentLogin(response: Welcome.Login.Response)
-//    {
-//      let greeting = response.success ? "Hello \(response.username!)" : ""
-//      let viewModel = Welcome.Login.ViewModel(success: response.success, greeting: greeting)
-//      viewController?.displayLogin(viewModel: viewModel)
-//    }
-    
-//
-//    func presentSomethingElse(response: Login.SomethingElse.Response) {
-//        let viewModel = Login.SomethingElse.ViewModel()
-//        viewController?.displaySomethingElse(viewModel: viewModel)
-//    }
 }

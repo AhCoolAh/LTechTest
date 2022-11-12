@@ -12,7 +12,7 @@
 
 import UIKit
 
-protocol MainMenuDisplayLogic: class
+protocol MainMenuDisplayLogic: AnyObject
 {
     func displaySomething(viewModel: MainMenu.Something.ViewModel)
 //    func displaySomethingElse(viewModel: MainMenu.SomethingElse.ViewModel)
@@ -67,6 +67,7 @@ class MainMenuViewController: UIViewController, MainMenuDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         doSomething()
+//        print("_____________\(KeychainService.shared.phone)+\(KeychainService.shared.pass)")
 //        doSomethingElse()
     }
     

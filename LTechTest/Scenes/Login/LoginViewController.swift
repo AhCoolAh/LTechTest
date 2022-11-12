@@ -16,16 +16,16 @@ import Veil
 protocol LoginDisplayLogic: AnyObject
 {
     func displaySomething(viewModel: Login.Something.ViewModel)
-//    func displaySomethingElse(viewModel: Login.SomethingElse.ViewModel)
     func displayPhoneMask(viewModel: Login.Mask.ViewModel)
     func displayLoginTry(viewModel: Login.Login.ViewModel)
+    func displayAutoFillForm(viewModel: Login.Form.ViewModel)
 }
 
 class LoginViewController: UIViewController, LoginDisplayLogic {
     var interactor: LoginBusinessLogic?
     var router: (NSObjectProtocol & LoginRoutingLogic & LoginDataPassing)?
 
-    // MARK: Object lifecycle
+    // MARK: - Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -72,19 +72,13 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         super.viewDidLoad()
         setupView()
         doSomething()
-        DispatchQueue.global().async {
-            let lock = DispatchSemaphore(value: 0)
-            self.getMask(completion: {
-                lock.signal()
-            })
-            lock.wait()
-        }
+        getMask()
         passwordTextField.delegate = self
         phoneTextField.delegate = self
         [passwordTextField, phoneTextField].forEach({ $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged) })
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name:UIResponder.keyboardWillHideNotification, object: nil)
-//        doSomethingElse()
+        autoFillForm()
     }
 
     // MARK: - request data from LoginInteractor
@@ -94,34 +88,27 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         interactor?.doSomething(request: request)
     }
     
-    func getMask(completion: (() -> Void)){
+    func getMask(){
         interactor?.getMask()
     }
     
-    func login() {
-        let phone = phoneTextField.text ?? ""
-        let password = passwordTextField.text ?? ""
-        let request = Login.Login.Request(phone: phone, password: password)
-        interactor?.login(request: request)
+    func autoFillForm() {
+        interactor?.autoFillForm()
     }
-//
-//    func doSomethingElse() {
-//        let request = Login.SomethingElse.Request()
-//        interactor?.doSomethingElse(request: request)
-//    }
 
     // MARK: - display view model from LoginPresenter
 
     func displaySomething(viewModel: Login.Something.ViewModel) {
         //nameTextField.text = viewModel.name
     }
-//
-//    func displaySomethingElse(viewModel: Login.SomethingElse.ViewModel) {
-//        // do sometingElse with viewModel
-//    }
+
     func displayPhoneMask(viewModel: Login.Mask.ViewModel) {
         dateMask = Veil(pattern: viewModel.mask)
-        phoneTextField.text = viewModel.code
+        let phoneInput = phoneTextField.text ?? ""
+        if !phoneInput.contains(" "){
+            phoneTextField.text = viewModel.code
+        }
+        print("_____triggerred mask")
     }
     
     func displayLoginTry(viewModel: Login.Login.ViewModel) {
@@ -132,13 +119,21 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
             stackViewPasswordContainer.layer.borderColor = UIColor(named: "redColor")?.cgColor
         }
     }
+    
+    func displayAutoFillForm(viewModel: Login.Form.ViewModel) {
+
+        phoneTextField.text = viewModel.phone
+        passwordTextField.text = viewModel.password
+        passwordText = viewModel.password
+        for _ in passwordText {  hashPassword += "*" }
+        nextButton.isEnabled = true
+        nextButton.backgroundColor = UIColor(named: "blueColor")
+        
+    }
 
 
     // MARK: - Login elements and events from UI
 
-//@IBOutlet weak var emailTextField: UITextField!
-//@IBOutlet weak var passwordTextField: UITextField!
-//@IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var loginFormStackView: UIStackView!
     @IBOutlet weak var stackViewTopLabel: UILabel!
     @IBOutlet weak var stackViewPhoneLabel: UILabel!
@@ -209,16 +204,6 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         }
     }
     
-    func toggleError() {
-//        if stackViewErrorLabel.isHidden {
-//            stackViewErrorLabel.isHidden = false
-//            stackViewPasswordContainer.layer.borderColor = UIColor(named: "redColor")?.cgColor
-//        } else {
-//            stackViewErrorLabel.isHidden = true
-//            stackViewPasswordContainer.layer.borderColor = UIColor(named: "extralightGrayColor")?.cgColor
-//        }
-    }
-    
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.bottomButtonConstraint.constant = -16 - keyboardSize.height
@@ -258,14 +243,6 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         nextButton.isEnabled = true
     }
 
-    
-//    func login()
-//    {
-//      let email = emailTextField.text ?? ""
-//      let password = passwordTextField.text ?? ""
-//      let request = Welcome.Login.Request(email: email, password: password)
-//      interactor?.login(request: request)
-//    }
 }
 
 // MARK: - Extensions
@@ -282,7 +259,6 @@ extension LoginViewController: UITextFieldDelegate {
         
             if string == "" {
                 passwordText.remove(at: offsetToUpdate)
-//                return true
             } else {
                 passwordText.insert(newChar!, at: offsetToUpdate)
             }
@@ -290,7 +266,6 @@ extension LoginViewController: UITextFieldDelegate {
             for _ in passwordText {  hashPassword += "*" }
             togglePassword()
             checkInput()
-//            toggleError()
             return false
         }
         return true
@@ -320,54 +295,6 @@ extension LoginViewController: UITextFieldDelegate {
     
     @objc func editingChanged(_ textField: UITextField) {
         checkInput()
-        toggleError()
     }
-    
-//    func checkInput() {
-//        stackViewErrorLabel.isHidden = true
-//        stackViewPasswordContainer.layer.borderColor = UIColor(named: "extralightGrayColor")?.cgColor
-//        guard
-//            let phone = phoneTextField.text, !phone.isEmpty,
-//            let pass = passwordTextField.text, !pass.isEmpty
-//        else {
-//            nextButton.backgroundColor = UIColor(named: "blueDisabledColor")
-//            nextButton.isEnabled = false
-//            return
-//        }
-//        nextButton.backgroundColor = UIColor(named: "blueColor")
-//        nextButton.isEnabled = true
-//    }
-    
-//@IBAction func loginButtonTapped(_ sender: Any)
-//{
-//  login()
-//}
 
-//func login()
-//{
-//  let email = emailTextField.text ?? ""
-//  let password = passwordTextField.text ?? ""
-//  let request = Welcome.Login.Request(email: email, password: password)
-//  interactor?.login(request: request)
-//}
-
-//func displayLogin(viewModel: Welcome.Login.ViewModel)
-//{
-//  if viewModel.success {
-//    showGreeting(greeting: viewModel.greeting)
-//    // router?.routeToHome(segue: nil)
-//  } else {
-//    showErrors()
-//  }
-//}
-
-//func showGreeting(greeting: String)
-//{
-//  messageLabel.text = greeting
-//}
-
-//func showErrors()
-//{
-//  messageLabel.text = "Your email/password didn't match"
-//}
 }

@@ -9,6 +9,8 @@ target 'LTechTest' do
 
     pod 'Alamofire'
     pod 'SwiftyJSON', '~> 4.0'
+    pod 'KeychainAccess', '~> 4.2'
+    
   target 'LTechTestTests' do
     inherit! :search_paths
     # Pods for testing
