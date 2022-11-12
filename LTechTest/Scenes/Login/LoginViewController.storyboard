@@ -111,10 +111,10 @@
                                             <constraint firstAttribute="bottom" secondItem="AaU-e6-SZl" secondAttribute="bottom" constant="10" id="hzU-Mu-dEF"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ggrtg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wuh-YF-Z1g">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Неверный пароль" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wuh-YF-Z1g">
                                         <rect key="frame" x="0.0" y="153" width="382" height="16"/>
                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="13"/>
-                                        <color key="textColor" name="redColor"/>
+                                        <color key="textColor" name="redErrorColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -185,11 +185,22 @@
                         <outlet property="stackViewPhoneContainer" destination="XSp-k2-Bi4" id="bbe-rS-koG"/>
                         <outlet property="stackViewPhoneLabel" destination="W69-OG-BW7" id="uHv-h0-Gcu"/>
                         <outlet property="stackViewTopLabel" destination="2Mh-Xq-vUQ" id="No5-Zx-MYC"/>
+                        <segue destination="89t-K1-lgl" kind="show" id="P2N-aR-Jnv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="121.73913043478262" y="123.88392857142857"/>
+            <point key="canvasLocation" x="9" y="121"/>
+        </scene>
+        <!--MainMenuViewController-->
+        <scene sceneID="13T-Sw-3fL">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="mainMenuSegue" storyboardName="MainMenuViewController" id="89t-K1-lgl" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Z72-v0-IdB"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fUE-Tq-BfS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="794" y="121"/>
         </scene>
     </scenes>
     <resources>
@@ -198,8 +209,8 @@
         <namedColor name="blueDisabledColor">
             <color red="0.72500002384185791" green="0.83099997043609619" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="redColor">
-            <color red="0.9570000171661377" green="0.3449999988079071" blue="0.42399999499320984" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="redErrorColor">
+            <color red="1" green="0.0" blue="0.049000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="whiteColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

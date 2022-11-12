@@ -18,6 +18,7 @@ protocol LoginDisplayLogic: AnyObject
     func displaySomething(viewModel: Login.Something.ViewModel)
 //    func displaySomethingElse(viewModel: Login.SomethingElse.ViewModel)
     func displayPhoneMask(viewModel: Login.Mask.ViewModel)
+    func displayLoginTry(viewModel: Login.Login.ViewModel)
 }
 
 class LoginViewController: UIViewController, LoginDisplayLogic {
@@ -122,6 +123,15 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         dateMask = Veil(pattern: viewModel.mask)
         phoneTextField.text = viewModel.code
     }
+    
+    func displayLoginTry(viewModel: Login.Login.ViewModel) {
+        if viewModel.success {
+            router?.routeToMainMenu()
+        } else {
+            stackViewErrorLabel.isHidden = false
+            stackViewPasswordContainer.layer.borderColor = UIColor(named: "redColor")?.cgColor
+        }
+    }
 
 
     // MARK: - Login elements and events from UI
@@ -139,7 +149,6 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var eyeButton: UIButton!
-    
     var password: String = ""
     var copy: String = ""
     var isEyeClosed = false
@@ -200,19 +209,15 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         }
     }
     
-//    func checkInput(_ number: Int) {
-//        let phoneInput = phoneTextField.text ?? ""
-//        let passwordInput = passwordTextField.text ?? ""
-//        print("________________\(number)")
-//        if(!phoneInput.isEmpty && !passwordInput.isEmpty) {
-//            nextButton.backgroundColor = UIColor(named: "blueColor")
-//            nextButton.isEnabled = true
+    func toggleError() {
+//        if stackViewErrorLabel.isHidden {
+//            stackViewErrorLabel.isHidden = false
+//            stackViewPasswordContainer.layer.borderColor = UIColor(named: "redColor")?.cgColor
 //        } else {
-//            nextButton.backgroundColor = UIColor(named: "blueDisabledColor")
-//            nextButton.isEnabled = false
-//
+//            stackViewErrorLabel.isHidden = true
+//            stackViewPasswordContainer.layer.borderColor = UIColor(named: "extralightGrayColor")?.cgColor
 //        }
-//    }
+    }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -228,17 +233,42 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         guard let currentText = sender.text else  {
             return
         }
-
         sender.text = dateMask.mask(input: currentText, exhaustive: false)
-//        phoneTextFieldEditingChanged
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
-        let biba = phoneTextField.text
-        let boba = passwordTextField.text
-        print("---------------\(biba)+\(boba)")
-    }  
+        let phone = phoneTextField.text ?? ""
+        let password = passwordText
+        let request = Login.Login.Request(phone: phone, password: password)
+        interactor?.login(request: request)
+    }
+    
+    func checkInput() {
+        stackViewErrorLabel.isHidden = true
+        stackViewPasswordContainer.layer.borderColor = UIColor(named: "extralightGrayColor")?.cgColor
+        guard
+            let phone = phoneTextField.text, !phone.isEmpty,
+            let pass = passwordTextField.text, !pass.isEmpty
+        else {
+            nextButton.backgroundColor = UIColor(named: "blueDisabledColor")
+            nextButton.isEnabled = false
+            return
+        }
+        nextButton.backgroundColor = UIColor(named: "blueColor")
+        nextButton.isEnabled = true
+    }
+
+    
+//    func login()
+//    {
+//      let email = emailTextField.text ?? ""
+//      let password = passwordTextField.text ?? ""
+//      let request = Welcome.Login.Request(email: email, password: password)
+//      interactor?.login(request: request)
+//    }
 }
+
+// MARK: - Extensions
 
 extension LoginViewController: UITextFieldDelegate {
     
@@ -260,7 +290,7 @@ extension LoginViewController: UITextFieldDelegate {
             for _ in passwordText {  hashPassword += "*" }
             togglePassword()
             checkInput()
-
+//            toggleError()
             return false
         }
         return true
@@ -290,22 +320,23 @@ extension LoginViewController: UITextFieldDelegate {
     
     @objc func editingChanged(_ textField: UITextField) {
         checkInput()
+        toggleError()
     }
     
-    func checkInput() {
-        guard
-            let phone = phoneTextField.text, !phone.isEmpty,
-            let pass = passwordTextField.text, !pass.isEmpty
-        else {
-            print("---notgurad--\(phoneTextField.text)+\(passwordTextField.text)")
-            nextButton.backgroundColor = UIColor(named: "blueDisabledColor")
-            nextButton.isEnabled = false
-            return
-        }
-        print("---gurad--\(phoneTextField.text)+\(passwordTextField.text)")
-        nextButton.backgroundColor = UIColor(named: "blueColor")
-        nextButton.isEnabled = true
-    }
+//    func checkInput() {
+//        stackViewErrorLabel.isHidden = true
+//        stackViewPasswordContainer.layer.borderColor = UIColor(named: "extralightGrayColor")?.cgColor
+//        guard
+//            let phone = phoneTextField.text, !phone.isEmpty,
+//            let pass = passwordTextField.text, !pass.isEmpty
+//        else {
+//            nextButton.backgroundColor = UIColor(named: "blueDisabledColor")
+//            nextButton.isEnabled = false
+//            return
+//        }
+//        nextButton.backgroundColor = UIColor(named: "blueColor")
+//        nextButton.isEnabled = true
+//    }
     
 //@IBAction func loginButtonTapped(_ sender: Any)
 //{

@@ -13,6 +13,13 @@
 		1763A890291C03130005F7FC /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1763A88F291C03130005F7FC /* SF-Pro-Display-Semibold.otf */; };
 		1763A892291C03290005F7FC /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1763A891291C03290005F7FC /* SF-Pro-Text-Regular.otf */; };
 		1763A895291EF3330005F7FC /* Veil in Frameworks */ = {isa = PBXBuildFile; productRef = 1763A894291EF3330005F7FC /* Veil */; };
+		1763A89E291FD86C0005F7FC /* MainMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763A898291FD86C0005F7FC /* MainMenuPresenter.swift */; };
+		1763A89F291FD86C0005F7FC /* MainMenuWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763A899291FD86C0005F7FC /* MainMenuWorker.swift */; };
+		1763A8A0291FD86C0005F7FC /* MainMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763A89A291FD86C0005F7FC /* MainMenuRouter.swift */; };
+		1763A8A1291FD86C0005F7FC /* MainMenuModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763A89B291FD86C0005F7FC /* MainMenuModels.swift */; };
+		1763A8A2291FD86C0005F7FC /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763A89C291FD86C0005F7FC /* MainMenuViewController.swift */; };
+		1763A8A3291FD86C0005F7FC /* MainMenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763A89D291FD86C0005F7FC /* MainMenuInteractor.swift */; };
+		1763A8A5291FD88D0005F7FC /* MainMenuViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1763A8A4291FD88D0005F7FC /* MainMenuViewController.storyboard */; };
 		17BDF9A3291A9660005502BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF9A2291A9660005502BA /* AppDelegate.swift */; };
 		17BDF9A5291A9660005502BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF9A4291A9660005502BA /* SceneDelegate.swift */; };
 		17BDF9A7291A9660005502BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF9A6291A9660005502BA /* ViewController.swift */; };
@@ -57,6 +64,13 @@
 		1763A88D291C02F60005F7FC /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		1763A88F291C03130005F7FC /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
 		1763A891291C03290005F7FC /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		1763A898291FD86C0005F7FC /* MainMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuPresenter.swift; sourceTree = "<group>"; };
+		1763A899291FD86C0005F7FC /* MainMenuWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuWorker.swift; sourceTree = "<group>"; };
+		1763A89A291FD86C0005F7FC /* MainMenuRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuRouter.swift; sourceTree = "<group>"; };
+		1763A89B291FD86C0005F7FC /* MainMenuModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuModels.swift; sourceTree = "<group>"; };
+		1763A89C291FD86C0005F7FC /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		1763A89D291FD86C0005F7FC /* MainMenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuInteractor.swift; sourceTree = "<group>"; };
+		1763A8A4291FD88D0005F7FC /* MainMenuViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainMenuViewController.storyboard; sourceTree = "<group>"; };
 		17BDF99F291A9660005502BA /* LTechTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTechTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BDF9A2291A9660005502BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17BDF9A4291A9660005502BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +149,20 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		1763A897291FB9830005F7FC /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				1763A898291FD86C0005F7FC /* MainMenuPresenter.swift */,
+				1763A899291FD86C0005F7FC /* MainMenuWorker.swift */,
+				1763A89A291FD86C0005F7FC /* MainMenuRouter.swift */,
+				1763A89B291FD86C0005F7FC /* MainMenuModels.swift */,
+				1763A89C291FD86C0005F7FC /* MainMenuViewController.swift */,
+				1763A89D291FD86C0005F7FC /* MainMenuInteractor.swift */,
+				1763A8A4291FD88D0005F7FC /* MainMenuViewController.storyboard */,
+			);
+			path = MainMenu;
+			sourceTree = "<group>";
+		};
 		17BDF996291A9660005502BA = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +234,7 @@
 		17BDF9ED291A9EF0005502BA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				1763A897291FB9830005F7FC /* MainMenu */,
 				17BDF9DE291A972F005502BA /* Login */,
 			);
 			path = Scenes;
@@ -349,6 +378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1763A8A5291FD88D0005F7FC /* MainMenuViewController.storyboard in Resources */,
 				1763A88E291C02F60005F7FC /* SF-Pro-Text-Semibold.otf in Resources */,
 				17BDF9AF291A9663005502BA /* LaunchScreen.storyboard in Resources */,
 				17BDF9EC291A9DBE005502BA /* LoginViewController.storyboard in Resources */,
@@ -484,14 +514,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1763A8A3291FD86C0005F7FC /* MainMenuInteractor.swift in Sources */,
 				17BDF9E6291A9750005502BA /* LoginWorker.swift in Sources */,
 				17BDF9E5291A9750005502BA /* LoginPresenter.swift in Sources */,
+				1763A89F291FD86C0005F7FC /* MainMenuWorker.swift in Sources */,
 				17BDF9E8291A9750005502BA /* LoginModels.swift in Sources */,
+				1763A8A2291FD86C0005F7FC /* MainMenuViewController.swift in Sources */,
 				17BDF9E7291A9750005502BA /* LoginRouter.swift in Sources */,
 				17BDF9E9291A9750005502BA /* LoginViewController.swift in Sources */,
 				17BDF9A7291A9660005502BA /* ViewController.swift in Sources */,
+				1763A89E291FD86C0005F7FC /* MainMenuPresenter.swift in Sources */,
 				17BDF9A3291A9660005502BA /* AppDelegate.swift in Sources */,
 				17BDF9A5291A9660005502BA /* SceneDelegate.swift in Sources */,
+				1763A8A0291FD86C0005F7FC /* MainMenuRouter.swift in Sources */,
+				1763A8A1291FD86C0005F7FC /* MainMenuModels.swift in Sources */,
 				17BDF9EA291A9750005502BA /* LoginInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

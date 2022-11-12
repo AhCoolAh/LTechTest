@@ -15,6 +15,7 @@ import UIKit
 protocol LoginPresentationLogic {
     func presentSomething(response: Login.Something.Response)
     func presentMask(response: Login.Mask.Response)
+    func presentLoginResponse(response: Login.Login.Response)
 }
 
 class LoginPresenter: LoginPresentationLogic {
@@ -35,6 +36,13 @@ class LoginPresenter: LoginPresentationLogic {
         let viewModel = Login.Mask.ViewModel(mask: maskString, code: code)
         viewController?.displayPhoneMask(viewModel: viewModel)
     }
+    
+    func presentLoginResponse(response: Login.Login.Response) {
+        print("-----\(response.success)")
+        let viewModel = Login.Login.ViewModel(success: response.success)
+        viewController?.displayLoginTry(viewModel: viewModel)
+    }
+
     
     
 //    func presentLogin(response: Welcome.Login.Response)

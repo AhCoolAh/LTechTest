@@ -63,8 +63,7 @@ enum Login
         
         struct ViewModel
         {
-            var mask: String
-            var code: String
+            var success: Bool
         }
     }
 }

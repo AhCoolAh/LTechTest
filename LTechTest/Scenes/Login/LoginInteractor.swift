@@ -44,10 +44,10 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     }
     
     func getMask() {
-        AF.request("http://dev-exam.l-tech.ru/api/v1/phone_masks", method: .get).responseJSON { responseJSON in
-            print(responseJSON.result)
-//            presenter?.presentMask(response: response[])
-        }
+//        AF.request("http://dev-exam.l-tech.ru/api/v1/phone_masks", method: .get).responseJSON { responseJSON in
+//            print(responseJSON.result)
+////            presenter?.presentMask(response: response[])
+//        }
         
         AF.request("http://dev-exam.l-tech.ru/api/v1/phone_masks", method: .get).responseJSON { response in
 //                        print(response.request)  // original URL request
@@ -63,7 +63,26 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     }
     
     func login(request: Login.Login.Request) {
-        //
+        
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+        let parameters = [
+            "phone": request.phone.replacingOccurrences( of: "[^0-9]", with: "", options: .regularExpression),
+            "password": request.password
+        ]
+        AF.request("http://dev-exam.l-tech.ru/api/v1/auth", method: .post, parameters: parameters, headers: headers).responseJSON { response in
+//                        print(response.request)  // original URL request
+//                        print(response.response) // URL response
+//                        print(response.data)     // server data
+//                        print(response.result)   // result of response serialization
+            
+            let value = response.value
+            let json = JSON(value)
+            let success = Login.Login.Response(success: json["success"].boolValue)
+            self.presenter?.presentLoginResponse(response: success)
+//            self.presenter?.presentMask(response: maskValue)
+        }
     }
 //
 //    func doSomethingElse(request: Login.SomethingElse.Request) {
