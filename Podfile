@@ -10,6 +10,7 @@ target 'LTechTest' do
     pod 'Alamofire'
     pod 'SwiftyJSON', '~> 4.0'
     pod 'KeychainAccess', '~> 4.2'
+    pod 'SDWebImage', '~> 5.0'
     
   target 'LTechTestTests' do
     inherit! :search_paths

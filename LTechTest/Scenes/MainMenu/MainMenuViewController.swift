@@ -11,10 +11,12 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol MainMenuDisplayLogic: AnyObject
 {
     func displaySomething(viewModel: MainMenu.Something.ViewModel)
+    func displayLoadedData(array: [MainMenu.CellData.CellData])
 //    func displaySomethingElse(viewModel: MainMenu.SomethingElse.ViewModel)
 }
 
@@ -67,27 +69,22 @@ class MainMenuViewController: UIViewController, MainMenuDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         doSomething()
+        print("Toggle")
+        loadData()
 //        print("_____________\(KeychainService.shared.phone)+\(KeychainService.shared.pass)")
 //        doSomethingElse()
     }
-    
-    //MARK: - receive events from UI
-    
-    //@IBOutlet weak var nameTextField: UITextField!
-//
-//    @IBAction func someButtonTapped(_ sender: Any) {
-//
-//    }
-//
-//    @IBAction func otherButtonTapped(_ sender: Any) {
-//
-//    }
     
     // MARK: - request data from MainMenuInteractor
 
     func doSomething() {
         let request = MainMenu.Something.Request()
         interactor?.doSomething(request: request)
+    }
+    
+    func loadData() {
+        print("----------Load data")
+        interactor?.loadData()
     }
 //
 //    func doSomethingElse() {
@@ -100,8 +97,183 @@ class MainMenuViewController: UIViewController, MainMenuDisplayLogic {
     func displaySomething(viewModel: MainMenu.Something.ViewModel) {
         //nameTextField.text = viewModel.name
     }
+    
+    func displayLoadedData(array: [MainMenu.CellData.CellData]) {
+        items.removeAll()
+        for element in array {
+            items.append(element)
+            tableView.reloadData()
+        }
+    }
 //
 //    func displaySomethingElse(viewModel: MainMenu.SomethingElse.ViewModel) {
 //        // do sometingElse with viewModel
 //    }
+    
+    
+    // MARK: - Main Menu elements and events from UI
+    
+    @IBOutlet weak var tableView: UITableView!
+    var items = [MainMenu.CellData.CellData]()
+    
+    
+    @IBAction func refreshButtonTapped(_ sender: Any) {
+        loadData()
+    }
+}
+
+
+// MARK: - UITableViewDataSource
+extension MainMenuViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        if indexPath.row == 1 {
+        
+        
+        
+        
+        
+//        for item in items {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellId", for: indexPath) as! MainMenuCell
+//            cell.cellTitle.text = item.title
+////            lbl.font = UIFont(name:"FontAwesome",size:15)
+//            cell.cellTitle.font = UIFont(name: "SF-Pro-Text-Semibold", size: 15)
+//            cell.cellTitle.textColor = UIColor(named: "blackColor")
+//
+//            cell.cellText.text = item.text
+//            cell.cellText.font = UIFont(name: "SF-Pro-Text-Regular", size: 15)
+//            cell.cellText.textColor = UIColor(named: "blackColor")
+//
+//            cell.cellDate.text = item.date
+//            cell.cellDate.font = UIFont(name: "SF-Pro-Text-Regular", size: 13)
+//            cell.cellDate.textColor = UIColor(named: "grayColor")
+//
+//
+//            cell.cellImage.sd_setImage(with: URL(string: "http://dev-exam.l-tech.ru/uploads/post/image/98d28aea-1018-44b9-b85e-f3b56dc2514b/thumb_10_image_6.jpg"), completed: nil)
+//            return cell
+//        }
+//        return
+        
+        
+        
+        
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellId", for: indexPath) as! MainMenuCell
+        let item = items[indexPath.row]
+        
+        cell.cellTitle.text = item.title
+//        cell.cellTitle.font = UIFont(name: "SF-Pro-Text-Semibold", size: 15)
+//        cell.cellTitle.textColor = UIColor(named: "blackColor")
+
+        cell.cellText.text = item.text
+//        cell.cellText.font = UIFont(name: "SF-Pro-Text-Regular", size: 15)
+//        cell.cellText.textColor = UIColor(named: "blackColor")
+
+        cell.cellDate.text = item.date
+//        cell.cellDate.font = UIFont(name: "SF-Pro-Text-Regular", size: 13)
+//        cell.cellDate.textColor = UIColor(named: "grayColor")
+
+
+        cell.cellImage.sd_setImage(with: URL(string: "http://dev-exam.l-tech.ru/"+item.image), completed: nil)
+        
+        return cell
+//        } else {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellId", for: indexPath) as! MainMenuCell
+//            cell.cellTitle.text = "JIIIIIJA"
+//            cell.cellText.text = "Joooooooooooja"
+//            cell.cellImage.sd_setImage(with: URL(string: "http://dev-exam.l-tech.ru/uploads/post/image/98d28aea-1018-44b9-b85e-f3b56dc2514b/thumb_10_image_6.jpg" ?? "" ), completed: nil)
+//            cell.cellDate.text = "10/12"
+//            return cell
+//        }
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "BLItemCellId", for: indexPath) as! BLItemCell
+//        let item = items[indexPath.row - 1]
+//        guard !item.isInvalidated else {
+//            return cell
+//        }
+//
+//        cell.itemImage.sd_setImage(with: URL(string: item.itemImage?.link ?? "" ), completed: nil)
+//        cell.nameLabel.text = item.name
+//        cell.descriptionLabel.text = item.action
+//
+//        let cashbackLabelText = NSMutableAttributedString.init(string: "\(item.cashbackTransBonus + item.cashbackQr)", attributes: [NSAttributedString.Key.font: UIFont.medium(ofSize: 28.0)])
+//        if item.typeCashback == "fix_for_one" {
+//            cashbackLabelText.append(NSMutableAttributedString.init(string: "₽ шт.", attributes: [NSAttributedString.Key.font: UIFont.medium(ofSize: 16.0)]))
+//        } else if item.typeCashback == "static" {
+//            cashbackLabelText.append(NSMutableAttributedString.init(string: "₽", attributes: [NSAttributedString.Key.font: UIFont.medium(ofSize: 16.0)]))
+//        } else {
+//            cashbackLabelText.append(NSMutableAttributedString.init(string: "%", attributes: [NSAttributedString.Key.font: UIFont.medium(ofSize: 28.0)]))
+//        }
+//
+//        cell.cashbackLabel.attributedText = cashbackLabelText
+        
+//        switch item.sellerinns {
+//
+//        case "7721546864":
+//            cell.marketplaceLabel.text = "   Wildberries   "
+//            cell.marketplaceLabel.textColor = AppSettings.UI.whiteNewColor
+//            cell.marketplaceLabel.backgroundColor = UIColor(red: 0.788, green: 0.129, blue: 0.663, alpha: 1)
+////            cell.marketplaceLabel.layer.cornerRadius = 5
+//        case "7704217370":
+//            cell.marketplaceLabel.text = "   Ozon   "
+//            cell.marketplaceLabel.textColor = AppSettings.UI.whiteNewColor
+//            cell.marketplaceLabel.backgroundColor = UIColor(red: 0, green: 0.357, blue: 0.996, alpha: 1)
+////            cell.marketplaceLabel.layer.cornerRadius = 5
+//        case "7736207543":
+//            cell.marketplaceLabel.text = "   Яндекс.Маркет   "
+//            cell.marketplaceLabel.textColor = AppSettings.UI.blackNewColor
+//            cell.marketplaceLabel.backgroundColor = UIColor(red: 1, green: 0.875, blue: 0.263, alpha: 1)
+////            cell.marketplaceLabel.layer.cornerRadius = 5
+//        case "7703380158":
+//            cell.marketplaceLabel.text = "   AliExpress   "
+//            cell.marketplaceLabel.textColor = AppSettings.UI.whiteNewColor
+//            cell.marketplaceLabel.backgroundColor = UIColor(red: 0.988, green: 0.169, blue: 0.18, alpha: 1)
+////            cell.marketplaceLabel.layer.cornerRadius = 5
+//        case "9718119016":
+//            cell.marketplaceLabel.text = "   DaGood   "
+//            cell.marketplaceLabel.textColor = AppSettings.UI.whiteNewColor
+//            cell.marketplaceLabel.backgroundColor = UIColor(red: 0.274, green: 0.094, blue: 0.513, alpha: 1)
+////            cell.marketplaceLabel.layer.cornerRadius = 5
+//        default:
+//            cell.marketplaceLabel.text = ""
+//            cell.marketplaceLabel.backgroundColor = AppSettings.UI.whiteNewColor
+//        }
+//
+//        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if indexPath.row == 0 {
+//            return 300
+//        } else {
+//            return  UITableView.automaticDimension
+//        }
+        return UITableView.automaticDimension
+//        return 300
+
+     }
+
+     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+         return 121
+     }
+}
+
+// MARK: - UITableViewDelegate
+extension MainMenuViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.cellForRow(at: indexPath) is MainMenuCell {
+            return
+        }
+//        let item = items[indexPath.row - 1]
+//        selectedItem = item
+//        AnalyticsService.marketQRCatalogItem(id: "\(item.id)")
+//        let vc = BLMarketplaceEventDetailVC()
+//        vc.item = selectedItem
+//
+//        vc.modalPresentationStyle = .custom
+//        present(vc, animated: true, completion: nil)
+    }
 }

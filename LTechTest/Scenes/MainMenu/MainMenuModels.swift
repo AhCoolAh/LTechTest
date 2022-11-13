@@ -34,6 +34,25 @@ enum MainMenu
         }
     }
     
+//    "id": 0,
+//    "title": "Title 1",
+//    "text": "Detailed Text 1",
+//    "image": "http://l-tech.ru/image_1.jpg", "sort": 2,
+//    "date": "2016-06-16 09:39:43"
+    
+    enum CellData
+    {
+        struct CellData
+        {
+            var id: String
+            var title: String
+            var text: String
+            var image: String
+            var sort: String
+            var date: String
+        }
+    }
+    
 //    enum SomethingElse
 //    {
 //        struct Request

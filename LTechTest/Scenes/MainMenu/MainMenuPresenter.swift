@@ -11,13 +11,17 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 protocol MainMenuPresentationLogic {
+    func presentLoadData(data: [MainMenu.CellData.CellData])
+    func presentLoadedData(data: JSON)
     func presentSomething(response: MainMenu.Something.Response)
 }
 
 class MainMenuPresenter: MainMenuPresentationLogic {
     weak var viewController: MainMenuDisplayLogic?
+    
 
     // MARK: Parse and calc respnse from MainMenuInteractor and send simple view model to MainMenuViewController to be displayed
 
@@ -25,6 +29,61 @@ class MainMenuPresenter: MainMenuPresentationLogic {
         let viewModel = MainMenu.Something.ViewModel()
         viewController?.displaySomething(viewModel: viewModel)
     }
+    
+    func presentLoadData(data: [MainMenu.CellData.CellData]) {
+        //
+    }
+    
+    func presentLoadedData(data: JSON) {
+        
+        var cellData = [MainMenu.CellData.CellData]()
+        var i = -1
+        data.forEach { item in
+            i += 1
+            let id = item.1["id"].stringValue
+            let title = item.1["title"].stringValue
+            let text = item.1["text"].stringValue
+            let image = item.1["image"].stringValue
+            let sort = item.1["sort"].stringValue
+            let dateRaw = item.1["date"].stringValue
+            var date = ""
+//            let isoDate = "2016-04-14T10:44:00+0000"
+
+//            let dateFormatterToDate = DateFormatter()
+//            dateFormatterToDate.locale = Locale(identifier: "ru_RU") // set locale to reliable US_POSIX
+//            dateFormatterToDate.dateFormat = "yy-MM-dd'T'HH:mm:ssZ"
+//            let dateToDate = dateFormatterToDate.date(from:dateRaw)!
+//
+//            let dateformatterToString = DateFormatter()
+//            dateformatterToString.locale = Locale(identifier: "ru_RU")
+//            dateformatterToString.dateFormat = "dd MMMM, HH:mm"
+//            let dateSToString = dateformatterToString.date(dateToDate)
+//
+//            let date = dateFormatter.string(from: dateSToString)
+//            print(date)
+            
+            let dateFormatterGet = DateFormatter()
+            dateFormatterGet.dateFormat = "yy-MM-dd'T'HH:mm:ssZ"
+
+            let dateFormatterPrint = DateFormatter()
+            dateFormatterPrint.dateFormat = "dd MMMM, HH:mm"
+            
+            if let dateGet = dateFormatterGet.date(from: dateRaw) {
+                date = dateFormatterPrint.string(from: dateGet)
+            }
+//           }} else {
+//               print("There was an error decoding the string")
+//            }
+            
+            let data = MainMenu.CellData.CellData(id: id, title: title, text: text, image: image, sort: sort, date: date)
+            cellData.append(data)
+//            print(cellData[i].text)
+        }
+        
+        viewController?.displayLoadedData(array: cellData)
+        
+    }
+    
 //
 //    func presentSomethingElse(response: MainMenu.SomethingElse.Response) {
 //        let viewModel = MainMenu.SomethingElse.ViewModel()

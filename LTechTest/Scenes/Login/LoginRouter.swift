@@ -32,7 +32,7 @@ class LoginRouter: NSObject, LoginRoutingLogic, LoginDataPassing {
 //        let mainMenuViewController = viewController?.storyboard!.instantiateViewController(identifier: "mainMenuSegue")
 //        present(mainMenuViewController, animated: false)
         let storyboard = UIStoryboard(name: "MainMenuViewController", bundle: nil)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: "MainMenuVC") as! MainMenuViewController
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: "MainMenuTabBarController")
         navigateToMainMenu(source: viewController!, destination: destinationVC)
     }
 //func routeToSomewhere(segue: UIStoryboardSegue?) {

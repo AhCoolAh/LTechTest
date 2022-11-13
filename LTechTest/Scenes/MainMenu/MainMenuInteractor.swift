@@ -11,8 +11,11 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 protocol MainMenuBusinessLogic {
+    func loadData()
     func doSomething(request: MainMenu.Something.Request)
 //    func doSomethingElse(request: MainMenu.SomethingElse.Request)
 }
@@ -24,6 +27,8 @@ protocol MainMenuDataStore {
 class MainMenuInteractor: MainMenuBusinessLogic, MainMenuDataStore {
     var presenter: MainMenuPresentationLogic?
     var worker: MainMenuWorker?
+    
+
     //var name: String = ""
 
     // MARK: Do something (and send response to MainMenuPresenter)
@@ -34,6 +39,56 @@ class MainMenuInteractor: MainMenuBusinessLogic, MainMenuDataStore {
 
         let response = MainMenu.Something.Response()
         presenter?.presentSomething(response: response)
+    }
+    
+    func loadData() {
+        
+        var cellData: [MainMenu.CellData.CellData]
+        
+        AF.request("http://dev-exam.l-tech.ru/api/v1/posts", method: .get).responseJSON { response in
+            let value = response.value ?? ""
+            let json = JSON(value)
+//            json.forEach { item in
+//                let id = item.1["id"].stringValue
+//                let title = item.1["title"].stringValue
+//                let text = item.1["text"].stringValue
+//                let image = item.1["image"].stringValue
+//                let sort = item.1["sort"].stringValue
+//                let date = item.1["date"].stringValue
+//                let data = MainMenu.CellData.CellData(id: id, title: title, text: text, image: image, sort: sort, date: date)
+//                cellData.append(data)
+//                print(item.1["id"])
+//            }
+            
+//            self.presenter?.presentLoadData(data: cellData)
+            
+            self.presenter?.presentLoadedData(data: json)
+            
+            
+//            var id: String
+//            var title: String
+//            var text: String
+//            var image: String
+//            var sort: Int
+//            var date: Date
+            
+            
+//            for item in json {
+//                let id = item["id"]
+//                print(id)
+//            }
+            
+//            let value = response.value ?? ""
+//            let json = JSON(value)
+//            let success = Login.Login.Response(success: json["success"].boolValue)
+//            self.presenter?.presentLoginResponse(response: success)
+            
+//            print("________________________________________")
+//            print(json[0])
+//            self.presenter?.presentLoginResponse(response: success)
+        }
+        
+        
     }
 //
 //    func doSomethingElse(request: MainMenu.SomethingElse.Request) {
