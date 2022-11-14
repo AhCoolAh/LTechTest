@@ -25,6 +25,8 @@
 		1763A8BA29219CCA0005F7FC /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763A8B929219CCA0005F7FC /* OverlayView.swift */; };
 		1763A8BC29219D040005F7FC /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1763A8BB29219D040005F7FC /* OverlayView.xib */; };
 		1763A8BE29219D6D0005F7FC /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763A8BD29219D6D0005F7FC /* PresentationController.swift */; };
+		1763A8C1292270E20005F7FC /* MainMenuDetailNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763A8C0292270E20005F7FC /* MainMenuDetailNewsViewController.swift */; };
+		1763A8C4292272630005F7FC /* MainMenuDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1763A8C3292272630005F7FC /* MainMenuDetailViewController.storyboard */; };
 		17BDF9A3291A9660005502BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF9A2291A9660005502BA /* AppDelegate.swift */; };
 		17BDF9A5291A9660005502BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF9A4291A9660005502BA /* SceneDelegate.swift */; };
 		17BDF9A7291A9660005502BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF9A6291A9660005502BA /* ViewController.swift */; };
@@ -81,6 +83,8 @@
 		1763A8B929219CCA0005F7FC /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		1763A8BB29219D040005F7FC /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		1763A8BD29219D6D0005F7FC /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		1763A8C0292270E20005F7FC /* MainMenuDetailNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuDetailNewsViewController.swift; sourceTree = "<group>"; };
+		1763A8C3292272630005F7FC /* MainMenuDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainMenuDetailViewController.storyboard; sourceTree = "<group>"; };
 		17BDF99F291A9660005502BA /* LTechTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTechTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BDF9A2291A9660005502BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17BDF9A4291A9660005502BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 		1763A897291FB9830005F7FC /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				1763A8C2292272260005F7FC /* MainMenuDetail */,
 				1763A8B829219C330005F7FC /* MainMenuSlider */,
 				1763A8B42921075D0005F7FC /* Cells */,
 				1763A898291FD86C0005F7FC /* MainMenuPresenter.swift */,
@@ -192,6 +197,15 @@
 				1763A8BD29219D6D0005F7FC /* PresentationController.swift */,
 			);
 			path = MainMenuSlider;
+			sourceTree = "<group>";
+		};
+		1763A8C2292272260005F7FC /* MainMenuDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1763A8C0292270E20005F7FC /* MainMenuDetailNewsViewController.swift */,
+				1763A8C3292272630005F7FC /* MainMenuDetailViewController.storyboard */,
+			);
+			path = MainMenuDetail;
 			sourceTree = "<group>";
 		};
 		17BDF996291A9660005502BA = {
@@ -409,6 +423,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1763A8C4292272630005F7FC /* MainMenuDetailViewController.storyboard in Resources */,
 				1763A8A5291FD88D0005F7FC /* MainMenuViewController.storyboard in Resources */,
 				1763A88E291C02F60005F7FC /* SF-Pro-Text-Semibold.otf in Resources */,
 				17BDF9AF291A9663005502BA /* LaunchScreen.storyboard in Resources */,
@@ -556,6 +571,7 @@
 				17BDF9E7291A9750005502BA /* LoginRouter.swift in Sources */,
 				17BDF9E9291A9750005502BA /* LoginViewController.swift in Sources */,
 				17BDF9A7291A9660005502BA /* ViewController.swift in Sources */,
+				1763A8C1292270E20005F7FC /* MainMenuDetailNewsViewController.swift in Sources */,
 				1763A8BA29219CCA0005F7FC /* OverlayView.swift in Sources */,
 				1763A89E291FD86C0005F7FC /* MainMenuPresenter.swift in Sources */,
 				17BDF9A3291A9660005502BA /* AppDelegate.swift in Sources */,

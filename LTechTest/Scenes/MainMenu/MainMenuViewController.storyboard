@@ -24,8 +24,20 @@
                     <view key="view" contentMode="scaleToFill" id="qdC-be-MTf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To be developed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCs-sC-J4H">
+                                <rect key="frame" x="144" y="437.5" width="126" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="kjX-w1-uSd"/>
-                        <color key="backgroundColor" name="darkGrayColor"/>
+                        <color key="backgroundColor" name="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="HCs-sC-J4H" firstAttribute="centerY" secondItem="qdC-be-MTf" secondAttribute="centerY" id="P4f-vU-cOK"/>
+                            <constraint firstItem="HCs-sC-J4H" firstAttribute="centerX" secondItem="qdC-be-MTf" secondAttribute="centerX" id="duV-U6-Xkl"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Избранное" image="heartTabIcon" id="jjK-Um-IGh"/>
                 </viewController>
@@ -40,8 +52,20 @@
                     <view key="view" contentMode="scaleToFill" id="7k5-1C-N3n">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To be developed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmy-Vg-Dwf">
+                                <rect key="frame" x="144" y="437.5" width="126" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="rwb-uW-0xD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bmy-Vg-Dwf" firstAttribute="centerY" secondItem="7k5-1C-N3n" secondAttribute="centerY" id="Bhe-fb-qzh"/>
+                            <constraint firstItem="bmy-Vg-Dwf" firstAttribute="centerX" secondItem="7k5-1C-N3n" secondAttribute="centerX" id="h08-OF-9ff"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Аккаунт" image="userTabIcon" id="rge-q6-Qfp"/>
                 </viewController>
@@ -146,6 +170,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="136"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQ1-Rw-RrI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="136"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MJ3-xG-8ix" userLabel="ContainerView">
                                                     <rect key="frame" x="16" y="0.0" width="398" height="136"/>
                                                     <subviews>
@@ -228,9 +256,13 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="MJ3-xG-8ix" firstAttribute="leading" secondItem="XQ1-Rw-RrI" secondAttribute="trailing" id="3bs-lw-pcn"/>
                                                 <constraint firstItem="MJ3-xG-8ix" firstAttribute="leading" secondItem="bFO-HG-9Wa" secondAttribute="leading" constant="16" id="57T-9x-ZUd"/>
                                                 <constraint firstAttribute="bottom" secondItem="MJ3-xG-8ix" secondAttribute="bottom" id="DjE-KU-cZ2"/>
+                                                <constraint firstItem="XQ1-Rw-RrI" firstAttribute="leading" secondItem="bFO-HG-9Wa" secondAttribute="leading" id="Enu-zx-C0E"/>
                                                 <constraint firstAttribute="trailing" secondItem="MJ3-xG-8ix" secondAttribute="trailing" id="VSs-zz-WFk"/>
+                                                <constraint firstAttribute="bottom" secondItem="XQ1-Rw-RrI" secondAttribute="bottom" id="jIK-x0-DDp"/>
+                                                <constraint firstItem="XQ1-Rw-RrI" firstAttribute="top" secondItem="bFO-HG-9Wa" secondAttribute="top" id="kox-6F-6OA"/>
                                                 <constraint firstItem="MJ3-xG-8ix" firstAttribute="top" secondItem="bFO-HG-9Wa" secondAttribute="top" id="scc-9J-4xI"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -304,9 +336,6 @@
         <image name="userTabIcon" width="18" height="22"/>
         <namedColor name="blackColor">
             <color red="0.15800000727176666" green="0.15800000727176666" blue="0.15800000727176666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="darkGrayColor">
-            <color red="0.28799998760223389" green="0.29300001263618469" blue="0.40400001406669617" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="grayColor">
             <color red="0.62099999189376831" green="0.62099999189376831" blue="0.62099999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

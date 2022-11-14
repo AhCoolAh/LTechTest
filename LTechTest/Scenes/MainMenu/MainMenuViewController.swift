@@ -154,7 +154,7 @@ class MainMenuViewController: UIViewController, MainMenuDisplayLogic {
             isRefreshedByButton = false
             return
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 120) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 180) {
             self.loadData()
         }
     }
@@ -199,9 +199,9 @@ extension MainMenuViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension MainMenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.cellForRow(at: indexPath) is MainMenuCell {
-            return
-        }
+        
+        
+       
 //        let item = items[indexPath.row - 1]
 //        selectedItem = item
 //        AnalyticsService.marketQRCatalogItem(id: "\(item.id)")
@@ -210,6 +210,21 @@ extension MainMenuViewController: UITableViewDelegate {
 //
 //        vc.modalPresentationStyle = .custom
 //        present(vc, animated: true, completion: nil)
+        
+        let item = items[indexPath.row]
+        
+        let vc = UIStoryboard(name: "MainMenuDetailViewController", bundle: nil).instantiateInitialViewController() as! MainMenuDetailNewsViewController
+        vc.modalPresentationStyle = .fullScreen
+        vc.item = item
+//        vc.modalTransitionStyle = .crossDisso
+//        vc.transitioningDelegate = self
+//        vc.isSortedByDate = isSortedByDate
+//        vc.delegate = self
+//        self.navigationController?.pushViewController(vc, animated: true)
+        self.present(vc, animated: true, completion: nil)
+        
+        
+        
     }
 }
 
@@ -231,3 +246,5 @@ extension MainMenuViewController: SortTypeDelegate {
         sortData(array: items)
     }
 }
+
+
