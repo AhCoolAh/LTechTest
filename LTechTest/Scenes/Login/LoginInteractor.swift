@@ -46,9 +46,6 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     
     func login(request: Login.Login.Request) {
         
-        let keychain = Keychain(service: "Test.LTechTest")
-        keychain["phone"] = request.phone
-        keychain["password"] = request.password
         let headers: HTTPHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]
@@ -59,6 +56,11 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
         AF.request("http://dev-exam.l-tech.ru/api/v1/auth", method: .post, parameters: parameters, headers: headers).responseJSON { response in
             let value = response.value ?? ""
             let json = JSON(value)
+            if json["success"].boolValue {
+                let keychain = Keychain(service: "Test.LTechTest")
+                keychain["phone"] = request.phone
+                keychain["password"] = request.password
+            }
             let success = Login.Login.Response(success: json["success"].boolValue)
             self.presenter?.presentLoginResponse(response: success)
         }
