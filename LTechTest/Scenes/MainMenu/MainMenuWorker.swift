@@ -14,10 +14,5 @@ import UIKit
 
 class MainMenuWorker {
     func doSomeWork() {
-        
     }
-//    
-//    func doSomeOtherWork() {
-//
-//    }
 }

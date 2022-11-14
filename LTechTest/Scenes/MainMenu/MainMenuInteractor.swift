@@ -17,8 +17,6 @@ import SwiftyJSON
 protocol MainMenuBusinessLogic {
     func loadData()
     func sortData(array: [MainMenu.CellData.CellData], sort: MainMenu.Sort.Sort)
-    func doSomething(request: MainMenu.Something.Request)
-//    func doSomethingElse(request: MainMenu.SomethingElse.Request)
 }
 
 protocol MainMenuDataStore {
@@ -30,56 +28,19 @@ class MainMenuInteractor: MainMenuBusinessLogic, MainMenuDataStore {
     var worker: MainMenuWorker?
     
 
-    //var name: String = ""
 
     // MARK: Do something (and send response to MainMenuPresenter)
-
-    func doSomething(request: MainMenu.Something.Request) {
-        worker = MainMenuWorker()
-        worker?.doSomeWork()
-
-        let response = MainMenu.Something.Response()
-        presenter?.presentSomething(response: response)
-    }
     
     func loadData() {
-        
-//        var cellData: [MainMenu.CellData.CellData]
-        
+                
         AF.request("http://dev-exam.l-tech.ru/api/v1/posts", method: .get).responseJSON { response in
             let value = response.value ?? ""
             let json = JSON(value)
-//            json.forEach { item in
-//                let id = item.1["id"].stringValue
-//                let title = item.1["title"].stringValue
-//                let text = item.1["text"].stringValue
-//                let image = item.1["image"].stringValue
-//                let sort = item.1["sort"].stringValue
-//                let date = item.1["date"].stringValue
-//                let data = MainMenu.CellData.CellData(id: id, title: title, text: text, image: image, sort: sort, date: date)
-//                cellData.append(data)
-//                print(item.1["id"])
-//            }
-            
-//            self.presenter?.presentLoadData(data: cellData)
-            
             self.presenter?.presentLoadedData(data: json)
-            
-
         }
-        
-        
     }
     
     func sortData(array: [MainMenu.CellData.CellData], sort: MainMenu.Sort.Sort) {
         self.presenter?.presentSortedData(array: array, sort: sort)
     }
-//
-//    func doSomethingElse(request: MainMenu.SomethingElse.Request) {
-//        worker = MainMenuWorker()
-//        worker?.doSomeOtherWork()
-//
-//        let response = MainMenu.SomethingElse.Response()
-//        presenter?.presentSomethingElse(response: response)
-//    }
 }

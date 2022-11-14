@@ -15,7 +15,6 @@ import Veil
 
 protocol LoginDisplayLogic: AnyObject
 {
-    func displaySomething(viewModel: Login.Something.ViewModel)
     func displayPhoneMask(viewModel: Login.Mask.ViewModel)
     func displayLoginTry(viewModel: Login.Login.ViewModel)
     func displayAutoFillForm(viewModel: Login.Form.ViewModel)
@@ -71,7 +70,6 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        doSomething()
         getMask()
         passwordTextField.delegate = self
         phoneTextField.delegate = self
@@ -82,11 +80,6 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     }
 
     // MARK: - request data from LoginInteractor
-
-    func doSomething() {
-        let request = Login.Something.Request()
-        interactor?.doSomething(request: request)
-    }
     
     func getMask(){
         interactor?.getMask()
@@ -98,17 +91,12 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
 
     // MARK: - display view model from LoginPresenter
 
-    func displaySomething(viewModel: Login.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
-    }
-
     func displayPhoneMask(viewModel: Login.Mask.ViewModel) {
         dateMask = Veil(pattern: viewModel.mask)
         let phoneInput = phoneTextField.text ?? ""
         if !phoneInput.contains(" "){
             phoneTextField.text = viewModel.code
         }
-        print("_____triggerred mask")
     }
     
     func displayLoginTry(viewModel: Login.Login.ViewModel) {
@@ -121,14 +109,12 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     }
     
     func displayAutoFillForm(viewModel: Login.Form.ViewModel) {
-
         phoneTextField.text = viewModel.phone
         passwordTextField.text = viewModel.password
         passwordText = viewModel.password
         for _ in passwordText {  hashPassword += "*" }
         nextButton.isEnabled = true
         nextButton.backgroundColor = UIColor(named: "blueColor")
-        
     }
 
 
@@ -144,17 +130,14 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var eyeButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    
     var password: String = ""
     var copy: String = ""
     var isEyeClosed = false
-    
     var passwordText = String()
-    
     var hashPassword = String()
-    
     var bottomButtonConstraint = NSLayoutConstraint()
-    @IBOutlet weak var nextButton: UIButton!
-    
     var dateMask = Veil(pattern: "###########")
     
     func setupView() {
@@ -180,11 +163,9 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         nextButton.layer.cornerRadius = 13
         nextButton.backgroundColor = UIColor(named: "blueDisabledColor")
         nextButton.isEnabled = false
-
     }
     
     @IBAction func eyeButtonTapped(_ sender: Any) {
-        
         if(!isEyeClosed) {
             isEyeClosed = true
             eyeButton.setImage(UIImage(named: "eyeCrossedIconLogin")!, for: .normal)

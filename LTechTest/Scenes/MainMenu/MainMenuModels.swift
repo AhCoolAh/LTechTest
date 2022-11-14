@@ -16,30 +16,6 @@ enum MainMenu
 {
     // MARK: Use cases
 
-    enum Something
-    {
-        struct Request
-        {
-
-        }
-
-        struct Response
-        {
-
-        }
-
-        struct ViewModel
-        {
-
-        }
-    }
-    
-//    "id": 0,
-//    "title": "Title 1",
-//    "text": "Detailed Text 1",
-//    "image": "http://l-tech.ru/image_1.jpg", "sort": 2,
-//    "date": "2016-06-16 09:39:43"
-    
     enum CellData
     {
         struct CellData
@@ -61,22 +37,5 @@ enum MainMenu
             var isSortedByDate: Bool
         }
     }
-    
-//    enum SomethingElse
-//    {
-//        struct Request
-//        {
-//
-//        }
-//
-//        struct Response
-//        {
-//
-//        }
-//
-//        struct ViewModel
-//        {
-//
-//        }
-//    }
+
 }

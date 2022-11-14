@@ -13,7 +13,6 @@
 import UIKit
 
 @objc protocol LoginRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
     func routeToMainMenu()
 }
 
@@ -25,39 +24,17 @@ class LoginRouter: NSObject, LoginRoutingLogic, LoginDataPassing {
     weak var viewController: LoginViewController?
     var dataStore: LoginDataStore?
 
-// MARK: Routing (navigating to other screens)
+// MARK: - Routing (navigating to other screens)
 
     func routeToMainMenu() {
-
-//        let mainMenuViewController = viewController?.storyboard!.instantiateViewController(identifier: "mainMenuSegue")
-//        present(mainMenuViewController, animated: false)
         let storyboard = UIStoryboard(name: "MainMenuViewController", bundle: nil)
         let destinationVC = storyboard.instantiateViewController(withIdentifier: "MainMenuTabBarController")
         navigateToMainMenu(source: viewController!, destination: destinationVC)
     }
-//func routeToSomewhere(segue: UIStoryboardSegue?) {
-//    if let segue = segue {
-//        let destinationVC = segue.destination as! SomewhereViewController
-//        var destinationDS = destinationVC.router!.dataStore!
-//        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//    } else {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-//        var destinationDS = destinationVC.router!.dataStore!
-//        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//        navigateToSomewhere(source: viewController!, destination: destinationVC)
-//    }
-//}
 
-// MARK: Navigation to other screen
+// MARK: - Navigation to other screen
 
-func navigateToMainMenu(source: LoginViewController, destination: UIViewController) {
-    source.show(destination, sender: nil)
-}
-
-// MARK: Passing data to other screen
-
-//    func passDataToSomewhere(source: LoginDataStore, destination: inout SomewhereDataStore) {
-//        destination.name = source.name
-//    }
+    func navigateToMainMenu(source: LoginViewController, destination: UIViewController) {
+        source.show(destination, sender: nil)
+    }
 }

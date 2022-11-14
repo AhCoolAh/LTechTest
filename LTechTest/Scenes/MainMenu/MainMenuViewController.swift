@@ -15,10 +15,8 @@ import SDWebImage
 
 protocol MainMenuDisplayLogic: AnyObject
 {
-    func displaySomething(viewModel: MainMenu.Something.ViewModel)
     func displayLoadedData(array: [MainMenu.CellData.CellData])
     func displaySortedData(array: [MainMenu.CellData.CellData])
-//    func displaySomethingElse(viewModel: MainMenu.SomethingElse.ViewModel)
 }
 
 class MainMenuViewController: UIViewController, MainMenuDisplayLogic {
@@ -69,23 +67,12 @@ class MainMenuViewController: UIViewController, MainMenuDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
-        print("Toggle")
         loadData()
-        
-//        print("_____________\(KeychainService.shared.phone)+\(KeychainService.shared.pass)")
-//        doSomethingElse()
     }
     
     // MARK: - request data from MainMenuInteractor
-
-    func doSomething() {
-        let request = MainMenu.Something.Request()
-        interactor?.doSomething(request: request)
-    }
     
     func loadData() {
-        print("----------Load data")
         interactor?.loadData()
     }
     
@@ -93,26 +80,11 @@ class MainMenuViewController: UIViewController, MainMenuDisplayLogic {
         let sort = MainMenu.Sort.Sort(isSortedByDate: isSortedByDate)
         interactor?.sortData(array: array, sort: sort)
     }
-//
-//    func doSomethingElse() {
-//        let request = MainMenu.SomethingElse.Request()
-//        interactor?.doSomethingElse(request: request)
-//    }
 
     // MARK: - display view model from MainMenuPresenter
 
-    func displaySomething(viewModel: MainMenu.Something.ViewModel) {
-        //nameTextField.text = viewModel.name
-    }
-    
     func displayLoadedData(array: [MainMenu.CellData.CellData]) {
-//        items.removeAll()
-//        for element in array {
-//            items.append(element)
-//        }
         sortData(array: array)
-        
-//        tableView.reloadData()
     }
     
     func displaySortedData(array: [MainMenu.CellData.CellData]) {
@@ -133,7 +105,6 @@ class MainMenuViewController: UIViewController, MainMenuDisplayLogic {
     var items = [MainMenu.CellData.CellData]()
     var isSortedByDate = false
     var isRefreshedByButton = false
-    
     
     @IBAction func refreshButtonTapped(_ sender: Any) {
         isRefreshedByButton = true
@@ -166,9 +137,7 @@ class MainMenuViewController: UIViewController, MainMenuDisplayLogic {
 extension MainMenuViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return items.count
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -184,15 +153,11 @@ extension MainMenuViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return UITableView.automaticDimension
-        
      }
 
      func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-         
          return 121
-         
      }
 }
 
@@ -200,31 +165,11 @@ extension MainMenuViewController: UITableViewDataSource {
 extension MainMenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
-       
-//        let item = items[indexPath.row - 1]
-//        selectedItem = item
-//        AnalyticsService.marketQRCatalogItem(id: "\(item.id)")
-//        let vc = BLMarketplaceEventDetailVC()
-//        vc.item = selectedItem
-//
-//        vc.modalPresentationStyle = .custom
-//        present(vc, animated: true, completion: nil)
-        
         let item = items[indexPath.row]
-        
         let vc = UIStoryboard(name: "MainMenuDetailViewController", bundle: nil).instantiateInitialViewController() as! MainMenuDetailNewsViewController
         vc.modalPresentationStyle = .fullScreen
         vc.item = item
-//        vc.modalTransitionStyle = .crossDisso
-//        vc.transitioningDelegate = self
-//        vc.isSortedByDate = isSortedByDate
-//        vc.delegate = self
-//        self.navigationController?.pushViewController(vc, animated: true)
         self.present(vc, animated: true, completion: nil)
-        
-        
-        
     }
 }
 

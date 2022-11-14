@@ -13,7 +13,6 @@
 import UIKit
 
 @objc protocol MainMenuRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
 protocol MainMenuDataPassing {
@@ -24,31 +23,4 @@ class MainMenuRouter: NSObject, MainMenuRoutingLogic, MainMenuDataPassing {
     weak var viewController: MainMenuViewController?
     var dataStore: MainMenuDataStore?
 
-// MARK: Routing (navigating to other screens)
-
-//func routeToSomewhere(segue: UIStoryboardSegue?) {
-//    if let segue = segue {
-//        let destinationVC = segue.destination as! SomewhereViewController
-//        var destinationDS = destinationVC.router!.dataStore!
-//        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//    } else {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-//        var destinationDS = destinationVC.router!.dataStore!
-//        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//        navigateToSomewhere(source: viewController!, destination: destinationVC)
-//    }
-//}
-
-// MARK: Navigation to other screen
-
-//func navigateToSomewhere(source: MainMenuViewController, destination: SomewhereViewController) {
-//    source.show(destination, sender: nil)
-//}
-
-// MARK: Passing data to other screen
-
-//    func passDataToSomewhere(source: MainMenuDataStore, destination: inout SomewhereDataStore) {
-//        destination.name = source.name
-//    }
 }

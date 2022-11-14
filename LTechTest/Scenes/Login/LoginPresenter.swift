@@ -13,7 +13,6 @@
 import UIKit
 
 protocol LoginPresentationLogic {
-    func presentSomething(response: Login.Something.Response)
     func presentMask(response: Login.Mask.Response)
     func presentLoginResponse(response: Login.Login.Response)
     func presentAutoFillForm(savedData: Login.Form.SavedData)
@@ -22,24 +21,16 @@ protocol LoginPresentationLogic {
 class LoginPresenter: LoginPresentationLogic {
     weak var viewController: LoginDisplayLogic?
 
-    // MARK: Parse and calc respnse from LoginInteractor and send simple view model to LoginViewController to be displayed
-
-    func presentSomething(response: Login.Something.Response) {
-        let viewModel = Login.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
-    }
+    // MARK: - Parse and calc response from LoginInteractor and send simple view model to LoginViewController to be displayed
     
     func presentMask(response: Login.Mask.Response) {
-        print("-----\(response)")
         let maskString = response.mask?.replacingOccurrences(of: "Х", with: "#") ?? ""
         let code:String = response.mask?.components(separatedBy: " ")[0] ?? ""
-
         let viewModel = Login.Mask.ViewModel(mask: maskString, code: code)
         viewController?.displayPhoneMask(viewModel: viewModel)
     }
     
     func presentLoginResponse(response: Login.Login.Response) {
-        print("-----\(response.success)")
         let viewModel = Login.Login.ViewModel(success: response.success)
         viewController?.displayLoginTry(viewModel: viewModel)
     }

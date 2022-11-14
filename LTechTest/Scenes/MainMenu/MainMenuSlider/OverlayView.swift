@@ -16,9 +16,6 @@ class OverlayView: UIViewController {
     var hasSetPointOrigin = false
     var pointOrigin: CGPoint?
     
-//    @IBOutlet weak var slideIdicator: UIView!
-//    @IBOutlet weak var imageView: UIImageView!
-//    @IBOutlet weak var subscribeButton: UIView!
     @IBOutlet weak var slideIndicator: UIView!
     @IBOutlet weak var dateSortCheckImageView: UIImageView!
     @IBOutlet weak var defaultSortCheckImageView: UIImageView!

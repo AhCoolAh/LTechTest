@@ -16,7 +16,6 @@ import SwiftyJSON
 import KeychainAccess
 
 protocol LoginBusinessLogic {
-    func doSomething(request: Login.Something.Request)
     func getMask()
     func login(request: Login.Login.Request)
     func autoFillForm()
@@ -34,14 +33,6 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     var newArray: Array<String> = []
 
     // MARK: Do something (and send response to LoginPresenter)
-
-    func doSomething(request: Login.Something.Request) {
-        worker = LoginWorker()
-        worker?.doSomeWork()
-
-        let response = Login.Something.Response()
-        presenter?.presentSomething(response: response)
-    }
     
     func getMask() {
         
