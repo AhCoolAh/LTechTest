@@ -7,6 +7,7 @@ $ git clone https://github.com/AhCoolAh/LTechTest.git
 $ cd LTechTest
 $ sudo gem install cocoapods
 $ pod install
+$ open LTechTest.xcworkspace
 ```
 
 ## Run parameters
