@@ -14,8 +14,8 @@ import UIKit
 import SwiftyJSON
 
 protocol MainMenuPresentationLogic {
-    func presentLoadData(data: [MainMenu.CellData.CellData])
     func presentLoadedData(data: JSON)
+    func presentSortedData(array: [MainMenu.CellData.CellData], sort:MainMenu.Sort.Sort)
     func presentSomething(response: MainMenu.Something.Response)
 }
 
@@ -30,23 +30,18 @@ class MainMenuPresenter: MainMenuPresentationLogic {
         viewController?.displaySomething(viewModel: viewModel)
     }
     
-    func presentLoadData(data: [MainMenu.CellData.CellData]) {
-        //
-    }
     
     func presentLoadedData(data: JSON) {
         
         var cellData = [MainMenu.CellData.CellData]()
-        var i = -1
         data.forEach { item in
-            i += 1
             let id = item.1["id"].stringValue
             let title = item.1["title"].stringValue
             let text = item.1["text"].stringValue
             let image = item.1["image"].stringValue
-            let sort = item.1["sort"].stringValue
+            let sort = item.1["sort"].intValue
             let dateRaw = item.1["date"].stringValue
-            var date = ""
+//            var date = Date()
 //            let isoDate = "2016-04-14T10:44:00+0000"
 
 //            let dateFormatterToDate = DateFormatter()
@@ -62,27 +57,45 @@ class MainMenuPresenter: MainMenuPresentationLogic {
 //            let date = dateFormatter.string(from: dateSToString)
 //            print(date)
             
-            let dateFormatterGet = DateFormatter()
-            dateFormatterGet.dateFormat = "yy-MM-dd'T'HH:mm:ssZ"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yy-MM-dd'T'HH:mm:ssZ"
 
-            let dateFormatterPrint = DateFormatter()
-            dateFormatterPrint.dateFormat = "dd MMMM, HH:mm"
+            let dateFormatterString = DateFormatter()
+            dateFormatterString.dateFormat = "dd MMMM, HH:mm"
             
-            if let dateGet = dateFormatterGet.date(from: dateRaw) {
-                date = dateFormatterPrint.string(from: dateGet)
-            }
+//            if let dateGet = dateFormatterGet.date(from: dateRaw) {
+//                date = dateFormatterPrint.string(from: dateGet)
+//            }
+            let date = dateFormatter.date(from: dateRaw)!
+            let stringDate = dateFormatterString.string(from: date)
+            
 //           }} else {
 //               print("There was an error decoding the string")
 //            }
             
-            let data = MainMenu.CellData.CellData(id: id, title: title, text: text, image: image, sort: sort, date: date)
+            let data = MainMenu.CellData.CellData(id: id, title: title, text: text, image: image, sort: sort, date: date, stringDate: stringDate)
             cellData.append(data)
 //            print(cellData[i].text)
         }
-        
+//        var sort = cellData.sorted(by: { $0.date > $1.date })
+//        print(sort)
+//        if sort.isSortedByDate {
+//            viewController?.displayLoadedData(array: cellData.sorted(by: { $0.date > $1.date }))
+//        } else {
+//            viewController?.displayLoadedData(array: cellData.sorted(by: { $0.sort < $1.sort }))
+//        }
         viewController?.displayLoadedData(array: cellData)
         
     }
+    
+    func presentSortedData(array: [MainMenu.CellData.CellData], sort:MainMenu.Sort.Sort) {
+        if sort.isSortedByDate {
+            viewController?.displaySortedData(array: array.sorted(by: { $0.date > $1.date }))
+        } else {
+            viewController?.displaySortedData(array: array.sorted(by: { $0.sort < $1.sort }))
+        }
+    }
+
     
 //
 //    func presentSomethingElse(response: MainMenu.SomethingElse.Response) {

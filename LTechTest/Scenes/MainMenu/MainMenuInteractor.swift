@@ -16,6 +16,7 @@ import SwiftyJSON
 
 protocol MainMenuBusinessLogic {
     func loadData()
+    func sortData(array: [MainMenu.CellData.CellData], sort: MainMenu.Sort.Sort)
     func doSomething(request: MainMenu.Something.Request)
 //    func doSomethingElse(request: MainMenu.SomethingElse.Request)
 }
@@ -43,7 +44,7 @@ class MainMenuInteractor: MainMenuBusinessLogic, MainMenuDataStore {
     
     func loadData() {
         
-        var cellData: [MainMenu.CellData.CellData]
+//        var cellData: [MainMenu.CellData.CellData]
         
         AF.request("http://dev-exam.l-tech.ru/api/v1/posts", method: .get).responseJSON { response in
             let value = response.value ?? ""
@@ -64,31 +65,14 @@ class MainMenuInteractor: MainMenuBusinessLogic, MainMenuDataStore {
             
             self.presenter?.presentLoadedData(data: json)
             
-            
-//            var id: String
-//            var title: String
-//            var text: String
-//            var image: String
-//            var sort: Int
-//            var date: Date
-            
-            
-//            for item in json {
-//                let id = item["id"]
-//                print(id)
-//            }
-            
-//            let value = response.value ?? ""
-//            let json = JSON(value)
-//            let success = Login.Login.Response(success: json["success"].boolValue)
-//            self.presenter?.presentLoginResponse(response: success)
-            
-//            print("________________________________________")
-//            print(json[0])
-//            self.presenter?.presentLoginResponse(response: success)
+
         }
         
         
+    }
+    
+    func sortData(array: [MainMenu.CellData.CellData], sort: MainMenu.Sort.Sort) {
+        self.presenter?.presentSortedData(array: array, sort: sort)
     }
 //
 //    func doSomethingElse(request: MainMenu.SomethingElse.Request) {

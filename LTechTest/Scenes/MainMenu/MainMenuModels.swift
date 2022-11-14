@@ -48,8 +48,17 @@ enum MainMenu
             var title: String
             var text: String
             var image: String
-            var sort: String
-            var date: String
+            var sort: Int
+            var date: Date
+            var stringDate: String
+        }
+    }
+    
+    enum Sort
+    {
+        struct Sort
+        {
+            var isSortedByDate: Bool
         }
     }
     

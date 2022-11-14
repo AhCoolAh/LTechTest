@@ -22,6 +22,9 @@
 		1763A8A5291FD88D0005F7FC /* MainMenuViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1763A8A4291FD88D0005F7FC /* MainMenuViewController.storyboard */; };
 		1763A8B22920E8880005F7FC /* MainMenuTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763A8B12920E8880005F7FC /* MainMenuTabBarController.swift */; };
 		1763A8B62921078C0005F7FC /* MainMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763A8B52921078C0005F7FC /* MainMenuCell.swift */; };
+		1763A8BA29219CCA0005F7FC /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763A8B929219CCA0005F7FC /* OverlayView.swift */; };
+		1763A8BC29219D040005F7FC /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1763A8BB29219D040005F7FC /* OverlayView.xib */; };
+		1763A8BE29219D6D0005F7FC /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763A8BD29219D6D0005F7FC /* PresentationController.swift */; };
 		17BDF9A3291A9660005502BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF9A2291A9660005502BA /* AppDelegate.swift */; };
 		17BDF9A5291A9660005502BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF9A4291A9660005502BA /* SceneDelegate.swift */; };
 		17BDF9A7291A9660005502BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF9A6291A9660005502BA /* ViewController.swift */; };
@@ -75,6 +78,9 @@
 		1763A8A4291FD88D0005F7FC /* MainMenuViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainMenuViewController.storyboard; sourceTree = "<group>"; };
 		1763A8B12920E8880005F7FC /* MainMenuTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuTabBarController.swift; sourceTree = "<group>"; };
 		1763A8B52921078C0005F7FC /* MainMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuCell.swift; sourceTree = "<group>"; };
+		1763A8B929219CCA0005F7FC /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+		1763A8BB29219D040005F7FC /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		1763A8BD29219D6D0005F7FC /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		17BDF99F291A9660005502BA /* LTechTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTechTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BDF9A2291A9660005502BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17BDF9A4291A9660005502BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +162,7 @@
 		1763A897291FB9830005F7FC /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				1763A8B829219C330005F7FC /* MainMenuSlider */,
 				1763A8B42921075D0005F7FC /* Cells */,
 				1763A898291FD86C0005F7FC /* MainMenuPresenter.swift */,
 				1763A899291FD86C0005F7FC /* MainMenuWorker.swift */,
@@ -175,6 +182,16 @@
 				1763A8B52921078C0005F7FC /* MainMenuCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		1763A8B829219C330005F7FC /* MainMenuSlider */ = {
+			isa = PBXGroup;
+			children = (
+				1763A8B929219CCA0005F7FC /* OverlayView.swift */,
+				1763A8BB29219D040005F7FC /* OverlayView.xib */,
+				1763A8BD29219D6D0005F7FC /* PresentationController.swift */,
+			);
+			path = MainMenuSlider;
 			sourceTree = "<group>";
 		};
 		17BDF996291A9660005502BA = {
@@ -399,6 +416,7 @@
 				1763A890291C03130005F7FC /* SF-Pro-Display-Semibold.otf in Resources */,
 				17BDF9AC291A9663005502BA /* Assets.xcassets in Resources */,
 				17BDF9AA291A9660005502BA /* Main.storyboard in Resources */,
+				1763A8BC29219D040005F7FC /* OverlayView.xib in Resources */,
 				1763A892291C03290005F7FC /* SF-Pro-Text-Regular.otf in Resources */,
 				1763A88C291C007A0005F7FC /* SF-Pro.ttf in Resources */,
 			);
@@ -532,11 +550,13 @@
 				17BDF9E6291A9750005502BA /* LoginWorker.swift in Sources */,
 				17BDF9E5291A9750005502BA /* LoginPresenter.swift in Sources */,
 				1763A89F291FD86C0005F7FC /* MainMenuWorker.swift in Sources */,
+				1763A8BE29219D6D0005F7FC /* PresentationController.swift in Sources */,
 				17BDF9E8291A9750005502BA /* LoginModels.swift in Sources */,
 				1763A8A2291FD86C0005F7FC /* MainMenuViewController.swift in Sources */,
 				17BDF9E7291A9750005502BA /* LoginRouter.swift in Sources */,
 				17BDF9E9291A9750005502BA /* LoginViewController.swift in Sources */,
 				17BDF9A7291A9660005502BA /* ViewController.swift in Sources */,
+				1763A8BA29219CCA0005F7FC /* OverlayView.swift in Sources */,
 				1763A89E291FD86C0005F7FC /* MainMenuPresenter.swift in Sources */,
 				17BDF9A3291A9660005502BA /* AppDelegate.swift in Sources */,
 				17BDF9A5291A9660005502BA /* SceneDelegate.swift in Sources */,
