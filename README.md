@@ -18,17 +18,15 @@ $ open LTechTest.xcworkspace
 
 ## Demo Screenshots
 
-<p>
-  <left><img src = "/ReadmeResources/mockup_3.png"></left>
-  <center><img src = "/ReadmeResources/mockup_3.png"></center>
-  <right><img src = "/ReadmeResources/mockup_3.png"></right>
-
-
+<p float="left">
+  <img src="/ReadmeResources/mockup_3.png" width="750" />
+  <img src="/ReadmeResources/mockup_3.png" width="750" />
+  <img src="/ReadmeResources/mockup_3.png" width="750" />
 </p>
 
 ## Terms of reference
 
-<center><img src = "/ReadmeResources/tz_1.jpg"></center>
+<center><img src = "/ReadmeResources/tz_1.jpg"/>
 
 <center><img src = "/ReadmeResources/tz_2.jpg"></center>
 
