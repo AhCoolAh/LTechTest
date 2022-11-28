@@ -19,9 +19,9 @@ $ open LTechTest.xcworkspace
 ## Demo Screenshots
 
 <p float="left">
-  <img src="/ReadmeResources/mockup_3.png" width="750" />
-  <img src="/ReadmeResources/mockup_3.png" width="750" />
-  <img src="/ReadmeResources/mockup_3.png" width="750" />
+  <img src="/ReadmeResources/mockup_3.png" width="100" />
+  <img src="/ReadmeResources/mockup_3.png" width="100" />
+  <img src="/ReadmeResources/mockup_3.png" width="100" />
 </p>
 
 ## Terms of reference
