@@ -19,21 +19,21 @@ $ open LTechTest.xcworkspace
 ## Demo Screenshots
 
 <p float="left">
-  <img src="/ReadmeResources/demo_1.png" width="300" />
-  <img src="/ReadmeResources/demo_2.png" width="300" />
-  <img src="/ReadmeResources/demo_3.png" width="300" />
+  <img src="/ReadmeResources/demo_1.png" width="200" />
+  <img src="/ReadmeResources/demo_2.png" width="200" />
+  <img src="/ReadmeResources/demo_3.png" width="200" />
 </p>
 
 <p float="left">
-  <img src="/ReadmeResources/demo_4.png" width="300" />
-  <img src="/ReadmeResources/demo_5.png" width="300" />
-  <img src="/ReadmeResources/demo_6.png" width="300" />
+  <img src="/ReadmeResources/demo_4.png" width="200" />
+  <img src="/ReadmeResources/demo_5.png" width="200" />
+  <img src="/ReadmeResources/demo_6.png" width="200" />
 </p>
 
 <p float="left">
-  <img src="/ReadmeResources/demo_7.png" width="300" />
-  <img src="/ReadmeResources/demo_8.png" width="300" />
-  <img src="/ReadmeResources/demo_9.png" width="300" />
+  <img src="/ReadmeResources/demo_7.png" width="200" />
+  <img src="/ReadmeResources/demo_8.png" width="200" />
+  <img src="/ReadmeResources/demo_9.png" width="200" />
 </p>
 
 ## Terms of reference
