@@ -15,3 +15,6 @@ $ open LTechTest.xcworkspace
 * Target - LtechTest
 * iOS Deployment Target - 15.2
 * Swift Language Version - Swift 5
+
+## Terms of reference
+
