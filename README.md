@@ -18,3 +18,8 @@ $ open LTechTest.xcworkspace
 
 ## Terms of reference
 
+<center><img src = "/ReadmeResources/tz_1.jpg"></center>
+
+<center><img src = "/ReadmeResources/tz_2.jpg"></center>
+
+<center><img src = "/ReadmeResources/tz_3.jpg"></center>
