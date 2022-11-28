@@ -23,3 +23,9 @@ $ open LTechTest.xcworkspace
 <center><img src = "/ReadmeResources/tz_2.jpg"></center>
 
 <center><img src = "/ReadmeResources/tz_3.jpg"></center>
+
+## Mockup
+
+<center><img src = "/ReadmeResources/mockup_1.jpg"></center>
+<center><img src = "/ReadmeResources/mockup_2.jpg"></center>
+<center><img src = "/ReadmeResources/mockup_3.jpg"></center>
