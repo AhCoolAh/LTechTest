@@ -16,6 +16,16 @@ $ open LTechTest.xcworkspace
 * iOS Deployment Target - 15.2
 * Swift Language Version - Swift 5
 
+## Demo Screenshots
+
+<p>
+  <left><img src = "/ReadmeResources/mockup_3.png"></left>
+  <center><img src = "/ReadmeResources/mockup_3.png"></center>
+  <right><img src = "/ReadmeResources/mockup_3.png"></right>
+
+
+</p>
+
 ## Terms of reference
 
 <center><img src = "/ReadmeResources/tz_1.jpg"></center>
